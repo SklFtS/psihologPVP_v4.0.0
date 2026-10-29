@@ -1,0 +1,2966 @@
+<!DOCTYPE html>
+<html lang="ru" data-version="4.0.0">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Виктория Протасова — психолог онлайн и очно</title>
+<meta name="description" content="Индивидуальные и парные консультации онлайн и очно. Бережный и структурный подход: тревога и перегрузка, отношения и границы, самооценка, периоды перемен.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Виктория Протасова — психолог онлайн и очно">
+<meta property="og:description" content="Бережный и структурный подход. Индивидуальные и парные консультации, мини-уроки по самоанализу и восстановлению ресурса.">
+<meta property="og:image" content="https://i.imgur.com/QIL3SZc.jpeg">
+<meta name="theme-color" content="#FAF6FC">
+
+<!--
+  ============================================================================
+  ВЕРСИЯ 4.0.0 · палитра Garnet Red + Lavender Haze
+  ----------------------------------------------------------------------------
+  ЦВЕТОВАЯ СИСТЕМА
+    Фон основной        #FAF6FC  (лавандовая дымка, светлая)
+    Фон чередующийся    #F2EAF8  (глубже)
+    Поверхность         #FFFFFF  (карточки)
+    Текст               #2E1A2E  (тёмный сливовый)
+    Текст вторичный     #4D3050
+    Текст приглушённый  #7A6480
+    Garnet Red          #8B2E4C  (акцент, кнопки)
+    Garnet hover        #9D3A5A
+    Garnet edge         #5E1A33
+    Garnet text         #6B1E36
+    Lavender Haze       #D9CCE8
+    Lavender soft       #E8DDF0
+    Lavender pale       #F2EAF8
+    Lavender text       #5A3A6A
+    Служебный           #D32F2F / #FF8FA0 (на тёмном подвале)
+  ----------------------------------------------------------------------------
+  ПЕРЕХОДЫ МЕЖДУ ЦВЕТАМИ
+    • Кнопки: градиент от #A24A6C (гранат+лаванда) к #7A2344.
+    • Eyebrow-линия: градиент lavender → garnet.
+    • Hero: два радиальных пятна — лаванда сверху, гранат снизу.
+    • Подвал: тёмный гранат с лавандовыми радиальными всполохами
+      и градиентной линией сверху lavender → garnet.
+  ----------------------------------------------------------------------------
+  ЧТО СОХРАНЕНО ИЗ 1.0.2 / 3.0.0
+    • Структура: hero, обо мне (2 карточки), услуги (4 в ряд),
+      кейсы-карусель, отзывы-карусель, мини-уроки, демо-календарь,
+      контакты, подвал с «Главной», cookie, юридический блок.
+    • Логика: маска телефона, валидация, квиз, ИИ-консультант «Мария»,
+      контактное окно выбора способа связи, скрытые телефон/e-mail.
+    • Служебные пометки: data-demo, rkn-placeholder, placeholder-отзывы.
+  ============================================================================
+-->
+
+<style>
+/* ==========================================================================
+   UI-KIT v4.0.0 · Garnet Red + Lavender Haze
+   ========================================================================== */
+:root{
+  --bg: #FAF6FC;
+  --bg-alt: #F2EAF8;
+  --bg-deep: #E8DDF0;
+  --surface: #FFFFFF;
+  --surface-2: #F8F3FB;
+
+  --ink: #2E1A2E;
+  --ink-soft: #4D3050;
+  --ink-muted: #7A6480;
+  --ink-dim: rgba(46,26,46,.42);
+
+  --line: rgba(46,26,46,.10);
+  --line-strong: rgba(46,26,46,.20);
+
+  --garnet: #8B2E4C;
+  --garnet-hover: #9D3A5A;
+  --garnet-deep: #7A2344;
+  --garnet-edge: #5E1A33;
+  --garnet-text: #6B1E36;
+
+  --lavender: #D9CCE8;
+  --lavender-soft: #E8DDF0;
+  --lavender-pale: #F2EAF8;
+  --lavender-text: #5A3A6A;
+
+  --red: #D32F2F;
+
+  --radius: 20px;
+  --maxw: 1180px;
+  --sans:'Onest','Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --serif:'PT Serif','Georgia','Times New Roman',serif;
+  --shadow-sm:0 2px 10px rgba(46,26,46,.06);
+  --shadow-md:0 14px 34px -18px rgba(46,26,46,.28);
+  --shadow-lg:0 30px 60px -34px rgba(46,26,46,.38);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.62;
+  color:var(--ink);
+  background:var(--bg);
+  transition:background-color .9s ease;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.no-scroll{overflow:hidden}
+
+img{max-width:100%;display:block}
+a{color:var(--garnet-text)}
+button{font-family:inherit}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;letter-spacing:-.015em;line-height:1.14;margin:0;color:var(--ink)}
+p{margin:0}
+
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 20px}
+@media (min-width:768px){.wrap{padding:0 32px}}
+
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:200;
+  background:var(--garnet);color:#fff;padding:12px 18px;border-radius:0 0 12px 0;text-decoration:none;
+}
+.skip-link:focus{left:0}
+
+:focus-visible{outline:3px solid var(--garnet);outline-offset:3px;border-radius:6px}
+
+/* ============================ ТИПОГРАФИКА ============================ */
+.h1{font-size:clamp(30px,8vw,58px);letter-spacing:-.03em;line-height:1.06}
+.h2{font-size:clamp(25px,5vw,42px);letter-spacing:-.025em}
+.h3{font-size:clamp(19px,2.4vw,22px)}
+.lead{font-size:clamp(16px,2.2vw,19px);line-height:1.62;color:var(--ink-soft)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-muted);font-weight:600;margin-bottom:14px;
+}
+.eyebrow::before{
+  content:"";width:32px;height:2px;border-radius:1px;
+  background:linear-gradient(90deg,var(--lavender),var(--garnet));
+}
+.note{font-size:13.5px;color:var(--ink-muted);margin-top:18px}
+
+/* ============================== КНОПКИ ============================== */
+.btn{
+  position:relative;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  min-height:50px;padding:14px 24px;border-radius:999px;
+  font:600 16px/1.15 var(--sans);letter-spacing:.005em;
+  border:1px solid transparent;cursor:pointer;text-decoration:none;
+  transition:transform .16s ease,box-shadow .16s ease,background .2s ease,color .2s ease,border-color .2s ease;
+  -webkit-tap-highlight-color:transparent;
+  will-change:transform;
+}
+.btn svg{flex:none}
+
+/* Primary: градиент, в верхней точке — гранат с лавандовым подтоном */
+.btn-primary{
+  color:#fff;
+  background:linear-gradient(180deg,#A24A6C 0%,#8B2E4C 55%,#7A2344 100%);
+  box-shadow:
+    0 6px 0 var(--garnet-edge),
+    0 10px 20px -4px rgba(94,26,51,.4),
+    0 20px 36px -14px rgba(94,26,51,.4),
+    inset 0 2px 0 rgba(255,255,255,.24),
+    inset 0 -2px 0 rgba(0,0,0,.14);
+}
+.btn-primary:hover{
+  transform:translateY(-3px);
+  background:linear-gradient(180deg,#B25878 0%,#9D3A5A 55%,#8B2E4C 100%);
+  box-shadow:
+    0 9px 0 var(--garnet-edge),
+    0 14px 26px -4px rgba(94,26,51,.45),
+    0 30px 48px -16px rgba(94,26,51,.45),
+    inset 0 2px 0 rgba(255,255,255,.28),
+    inset 0 -2px 0 rgba(0,0,0,.14);
+}
+.btn-primary:active{
+  transform:translateY(3px);
+  box-shadow:
+    0 2px 0 var(--garnet-edge),
+    0 4px 8px -2px rgba(94,26,51,.4),
+    inset 0 1px 0 rgba(255,255,255,.18),
+    inset 0 -1px 0 rgba(0,0,0,.18);
+}
+
+/* Secondary: белая с лавандовой окантовкой */
+.btn-secondary{
+  color:var(--ink);
+  background:linear-gradient(180deg,#FFFFFF 0%,#F8F3FB 100%);
+  border-color:rgba(139,46,76,.24);
+  box-shadow:
+    0 6px 0 #D8C8DE,
+    0 10px 18px -4px rgba(46,26,46,.14),
+    inset 0 2px 0 #fff,
+    inset 0 -2px 0 rgba(46,26,46,.04);
+}
+.btn-secondary:hover{
+  transform:translateY(-3px);
+  border-color:var(--garnet);
+  color:var(--garnet-text);
+  box-shadow:
+    0 9px 0 #D8C8DE,
+    0 14px 24px -4px rgba(46,26,46,.18),
+    inset 0 2px 0 #fff,
+    inset 0 -2px 0 rgba(46,26,46,.04);
+}
+.btn-secondary:active{
+  transform:translateY(3px);
+  box-shadow:
+    0 2px 0 #D8C8DE,
+    0 4px 8px -2px rgba(46,26,46,.15),
+    inset 0 1px 0 #fff,
+    inset 0 -1px 0 rgba(46,26,46,.06);
+}
+
+/* Ghost: гранат на белом */
+.btn-ghost{
+  color:var(--garnet-text);
+  background:linear-gradient(180deg,#FFFFFF 0%,#FAF6FC 100%);
+  border-color:rgba(139,46,76,.28);
+  padding:12px 20px;min-height:46px;font-size:15px;
+  box-shadow:
+    0 4px 0 rgba(139,46,76,.22),
+    0 8px 16px -6px rgba(46,26,46,.15),
+    inset 0 1px 0 #fff;
+}
+.btn-ghost:hover{
+  transform:translateY(-2px);
+  border-color:var(--garnet);
+  background:#fff;
+  box-shadow:
+    0 6px 0 rgba(139,46,76,.28),
+    0 12px 22px -8px rgba(46,26,46,.2),
+    inset 0 1px 0 #fff;
+}
+.btn-ghost:active{
+  transform:translateY(2px);
+  box-shadow:
+    0 1px 0 rgba(139,46,76,.28),
+    0 3px 8px -4px rgba(46,26,46,.2),
+    inset 0 1px 0 #fff;
+}
+
+.btn-sm{min-height:44px;padding:11px 20px;font-size:14.5px}
+.btn-block{width:100%}
+
+.btn[disabled],.btn.is-disabled{
+  opacity:.42;cursor:not-allowed;transform:none!important;box-shadow:none!important;
+}
+.btn-secondary[disabled]{
+  background:rgba(46,26,46,.05);color:var(--ink-dim);border-color:var(--line);
+}
+
+/* ============================== ХЕДЕР ============================== */
+.site-header{
+  position:sticky;top:0;z-index:60;
+  background:rgba(250,246,252,.88);
+  backdrop-filter:blur(16px) saturate(1.2);
+  -webkit-backdrop-filter:blur(16px) saturate(1.2);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{display:flex;align-items:center;gap:14px;min-height:64px}
+.brand{display:flex;flex-direction:column;gap:1px;text-decoration:none;color:inherit;margin-right:auto}
+.brand strong{font-family:var(--serif);font-size:17px;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+.brand span{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--garnet-text);font-weight:600}
+
+.nav{display:none}
+.nav a{
+  text-decoration:none;color:var(--ink-soft);font-size:14.5px;font-weight:500;
+  padding:9px 12px;border-radius:999px;transition:color .2s,background-color .2s;white-space:nowrap;
+}
+.nav a:hover{color:var(--ink);background:rgba(139,46,76,.07)}
+.nav a.is-active{color:var(--garnet-text);background:rgba(139,46,76,.12)}
+
+.nav a.nav-home{display:inline-flex;align-items:center;gap:7px}
+.nav a.nav-home svg{flex:none;opacity:.6}
+.nav a.nav-home:hover svg{opacity:.85}
+
+@media (min-width:1080px){
+  .nav{display:flex;align-items:center;gap:2px}
+  .nav a.nav-home{
+    margin-right:8px;color:var(--ink);background:#fff;
+    border:1px solid var(--line-strong);box-shadow:0 2px 0 rgba(46,26,46,.06);
+  }
+  .nav a.nav-home:hover{
+    background:#fff;border-color:var(--garnet);color:var(--garnet-text);
+    box-shadow:0 2px 0 rgba(139,46,76,.24);
+  }
+  .nav a.nav-home.is-active{background:#fff;border-color:var(--garnet);color:var(--garnet-text)}
+}
+@media (max-width:1079px){
+  .nav{
+    position:fixed;left:0;right:0;top:64px;bottom:auto;
+    display:none;flex-direction:column;gap:2px;
+    padding:14px 20px 26px;
+    background:var(--bg);border-bottom:1px solid var(--line);
+    box-shadow:0 24px 40px -20px rgba(46,26,46,.18);
+    max-height:calc(100vh - 64px);overflow:auto;
+  }
+  .nav.is-open{display:flex}
+  .nav a{padding:14px 12px;font-size:16.5px;border-radius:12px}
+  .nav a.nav-home{border-bottom:1px solid var(--line);border-radius:12px 12px 0 0;margin-bottom:4px}
+  .nav .nav-cta{margin-top:14px;display:inline-flex}
+}
+@media (min-width:1080px){
+  .nav .nav-cta{display:none}
+}
+
+.header-actions{display:flex;align-items:center;gap:8px}
+.header-actions .btn-primary{display:none}
+@media (min-width:640px){.header-actions .btn-primary{display:inline-flex}}
+
+.burger{
+  width:46px;height:46px;display:inline-flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+  background:transparent;border:1px solid var(--line-strong);border-radius:14px;cursor:pointer;
+}
+@media (min-width:1080px){.burger{display:none}}
+.burger span{display:block;width:18px;height:1.8px;background:var(--ink);border-radius:2px;transition:transform .25s ease,opacity .2s ease}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.8px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.8px) rotate(-45deg)}
+
+/* ============================== СЕКЦИИ ============================== */
+.section{position:relative;padding:clamp(56px,9vw,104px) 0}
+.section::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  opacity:.9;
+}
+.section[data-bg="base"]::before{
+  background:radial-gradient(120% 60% at 50% -10%,rgba(217,204,232,.45),transparent 60%);
+}
+.section[data-bg="alt"]::before{
+  background:
+    radial-gradient(120% 60% at 50% -10%,rgba(217,204,232,.32),transparent 55%),
+    radial-gradient(80% 40% at 50% 110%,rgba(139,46,76,.05),transparent 60%);
+}
+.section > .wrap{position:relative;z-index:1}
+.section-head{max-width:720px;margin-bottom:clamp(28px,5vw,48px)}
+.section-head .lead{margin-top:16px}
+
+.noise::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+}
+
+/* ================================ HERO ================================ */
+.hero{padding-top:clamp(28px,5vw,52px);padding-bottom:clamp(48px,7vw,88px);overflow:hidden}
+.hero::before{
+  background:
+    radial-gradient(ellipse at 15% 0%,rgba(217,204,232,.55),transparent 55%),
+    radial-gradient(ellipse at 90% 90%,rgba(139,46,76,.07),transparent 55%) !important;
+}
+.hero-grid{display:grid;gap:clamp(30px,5vw,56px);align-items:center}
+@media (min-width:900px){.hero-grid{grid-template-columns:1.05fr .95fr;gap:clamp(40px,5vw,72px)}}
+.badge{
+  display:inline-flex;align-items:center;gap:9px;
+  background:rgba(217,204,232,.5);color:var(--garnet-text);
+  border:1px solid rgba(139,46,76,.22);
+  padding:7px 15px 7px 12px;border-radius:999px;
+  font-size:13px;font-weight:600;letter-spacing:.01em;margin-bottom:20px;
+}
+.badge .dot{
+  width:8px;height:8px;border-radius:50%;background:var(--garnet);flex:none;
+  box-shadow:0 0 0 0 rgba(139,46,76,.55);animation:pulse 2.6s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(139,46,76,.5)}
+  70%{box-shadow:0 0 0 9px rgba(139,46,76,0)}
+  100%{box-shadow:0 0 0 0 rgba(139,46,76,0)}
+}
+.hero h1{margin-bottom:20px}
+.hero .lead{max-width:540px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.hero-actions .btn{flex:1 1 auto;min-width:160px}
+@media (min-width:560px){.hero-actions .btn{flex:0 0 auto}}
+.hero-facts{
+  display:flex;flex-wrap:wrap;gap:10px 22px;margin:30px 0 0;padding:0;list-style:none;
+  font-size:14px;color:var(--ink-soft);
+}
+.hero-facts li{position:relative;padding-left:16px}
+.hero-facts li::before{
+  content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;
+  background:var(--garnet);opacity:.75;
+}
+
+.hero-media{position:relative;justify-self:center;width:100%;max-width:440px}
+.hero-media::before{
+  content:"";position:absolute;inset:-14% -10% 6%;z-index:0;border-radius:50%;
+  background:radial-gradient(circle at 50% 45%,rgba(139,46,76,.14),rgba(217,204,232,.28) 55%,transparent 72%);
+  filter:blur(8px);
+}
+.hero-media img{
+  position:relative;z-index:1;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 22%;
+  border-radius:230px 230px 22px 22px;
+  box-shadow:var(--shadow-lg);
+  background:var(--lavender-soft);
+}
+.hero-media-card{
+  position:relative;z-index:2;margin:-34px 0 0 8px;width:fit-content;max-width:86%;
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  padding:13px 18px;box-shadow:var(--shadow-md);
+}
+.hero-media-card strong{display:block;font-family:var(--serif);font-size:15.5px;letter-spacing:-.01em;color:var(--ink)}
+.hero-media-card span{display:block;font-size:12.5px;color:var(--ink-muted);line-height:1.45;margin-top:2px}
+
+/* =============================== ABOUT =============================== */
+.about-grid{display:grid;gap:clamp(28px,5vw,64px)}
+@media (min-width:900px){.about-grid{grid-template-columns:.85fr 1.15fr;align-items:start}}
+.about-quote{
+  font-family:var(--serif);font-style:italic;font-size:clamp(20px,3vw,26px);line-height:1.42;
+  letter-spacing:-.015em;color:var(--garnet-text);margin:0 0 24px;
+  padding-left:22px;border-left:2px solid var(--garnet);
+}
+.about-body p + p{margin-top:16px}
+.about-body{color:var(--ink-soft);font-size:16.5px}
+.about-body strong{color:var(--ink);font-weight:600}
+.info-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-top:26px;box-shadow:var(--shadow-sm);
+}
+.info-card h3{font-size:16px;margin-bottom:8px;letter-spacing:.01em;color:var(--ink)}
+.info-card ul{margin:0;padding:0;list-style:none;display:grid;gap:7px}
+.info-card li{position:relative;padding-left:18px;font-size:15px;color:var(--ink-soft)}
+.info-card li::before{
+  content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--garnet);opacity:.8;
+}
+.about-meta{display:grid;gap:14px;margin-top:26px}
+.about-meta .info-card{margin-top:0}
+@media (min-width:640px){.about-meta{grid-template-columns:1fr 1fr}}
+
+/* ============================== SERVICES ============================== */
+.service-grid{display:grid;gap:18px}
+@media (min-width:680px){.service-grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1080px){.service-grid{grid-template-columns:repeat(4,1fr);gap:14px}}
+.service-card{
+  display:flex;flex-direction:column;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 18px;box-shadow:var(--shadow-sm);
+  transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease;
+}
+@media (hover:hover){
+  .service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:rgba(139,46,76,.4)}
+}
+.service-card h3{font-size:18px;margin-bottom:6px;line-height:1.25;color:var(--ink)}
+.service-meta{font-size:12.5px;color:var(--ink-muted);margin-bottom:16px;line-height:1.4}
+.seg{display:inline-flex;padding:3px;background:rgba(139,46,76,.07);border-radius:999px;margin-bottom:14px;align-self:flex-start}
+.seg-btn{
+  border:0;background:transparent;border-radius:999px;padding:7px 13px;min-height:34px;
+  font:600 12.5px/1 var(--sans);color:var(--ink-muted);cursor:pointer;transition:background-color .2s,color .2s;
+}
+.seg-btn[aria-pressed="true"]{background:var(--surface);color:var(--garnet-text);box-shadow:0 1px 6px rgba(46,26,46,.1)}
+.price{display:flex;align-items:baseline;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.price-val{font-family:var(--serif);font-size:26px;letter-spacing:-.03em;line-height:1;color:var(--garnet-text)}
+.price-note{font-size:12px;color:var(--ink-muted)}
+.service-actions{display:flex;flex-direction:column;gap:11px;margin-top:auto}
+.service-actions .btn{width:100%}
+.service-actions .btn-sm{font-size:13.5px;padding:10px 14px;min-height:42px}
+.service-card--digital{background:linear-gradient(160deg,#F8F3FB,#F2EAF8);border-color:rgba(139,46,76,.22)}
+
+/* =============================== CASES =============================== */
+.cases-carousel{position:relative}
+@media (min-width:900px){.cases-carousel{padding:0 58px}}
+
+.cases-track{
+  display:flex;gap:16px;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-ms-overflow-style:none;
+  padding:4px 0 8px;
+  margin:0 -20px;padding-left:20px;padding-right:20px;
+}
+.cases-track::-webkit-scrollbar{display:none}
+@media (min-width:768px){.cases-track{margin:0;padding-left:0;padding-right:0}}
+
+.cases-arrow{display:none;position:absolute;top:50%;transform:translateY(-50%);z-index:3}
+@media (min-width:900px){.cases-arrow{display:inline-flex}}
+.cases-prev{left:0}
+.cases-next{right:0}
+
+.case-card{
+  flex:0 0 86%;scroll-snap-align:start;
+  position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 22px 22px;box-shadow:var(--shadow-sm);overflow:hidden;
+  transition:transform .28s ease,box-shadow .28s ease;
+}
+@media (min-width:680px){.case-card{flex-basis:calc(50% - 8px)}}
+@media (min-width:1180px){.case-card{flex-basis:calc(33.333% - 11px)}}
+@media (hover:hover){.case-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}}
+.case-num{
+  font-family:var(--serif);font-size:44px;line-height:1;letter-spacing:-.04em;
+  color:var(--garnet);opacity:.35;display:block;margin-bottom:10px;
+}
+.case-card h3{font-size:18.5px;line-height:1.28;margin-bottom:16px;color:var(--ink)}
+.case-card dl{margin:0;display:grid;gap:12px}
+.case-card dt{
+  font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--garnet-text);
+  font-weight:700;margin-bottom:3px;
+}
+.case-card dd{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+
+/* ============================== REVIEWS ============================== */
+.carousel{position:relative}
+@media (min-width:900px){.carousel{padding:0 58px}}
+
+.carousel-track{
+  display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-ms-overflow-style:none;
+  padding:4px 0 8px;margin:0 -20px;padding-left:20px;padding-right:20px;
+}
+.carousel-track::-webkit-scrollbar{display:none}
+@media (min-width:768px){.carousel-track{margin:0;padding-left:0;padding-right:0}}
+
+.reviews-arrow{display:none;position:absolute;top:50%;transform:translateY(-50%);z-index:3}
+@media (min-width:900px){.reviews-arrow{display:inline-flex}}
+.reviews-prev{left:0}
+.reviews-next{right:0}
+
+.review{
+  flex:0 0 86%;scroll-snap-align:start;margin:0;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 22px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;
+}
+@media (min-width:768px){.review{flex-basis:calc(50% - 8px)}}
+@media (min-width:1080px){.review{flex-basis:calc(33.333% - 11px)}}
+.review blockquote{
+  margin:0 0 18px;font-family:var(--serif);font-size:17.5px;line-height:1.52;letter-spacing:-.01em;
+  color:var(--ink);flex:1;
+}
+.review blockquote::before{
+  content:"«";font-family:var(--serif);font-size:40px;line-height:0;vertical-align:-.32em;
+  color:var(--garnet);opacity:.55;margin-right:4px;
+}
+.review figcaption{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--ink-soft)}
+.review figcaption::before{
+  content:"";width:22px;height:1px;background:var(--garnet);opacity:.6;flex:none;
+}
+
+.arrow{
+  width:46px;height:46px;border-radius:50%;border:1px solid var(--line-strong);
+  background:var(--surface);color:var(--ink);display:inline-flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background-color .2s,border-color .2s,transform .2s,box-shadow .2s,color .2s;
+  box-shadow:0 2px 0 rgba(46,26,46,.08), 0 8px 16px -8px rgba(46,26,46,.18);
+}
+.arrow:hover{
+  background:var(--lavender-pale);border-color:var(--garnet);color:var(--garnet-text);
+  transform:translateY(-1px);
+  box-shadow:0 2px 0 rgba(139,46,76,.22), 0 12px 20px -8px rgba(139,46,76,.22);
+}
+.arrow:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(46,26,46,.1), 0 4px 8px -4px rgba(46,26,46,.15)}
+.arrow[disabled]{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* ============================== LESSONS ============================== */
+.lesson-grid{display:grid;gap:16px}
+@media (min-width:680px){.lesson-grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1080px){.lesson-grid{grid-template-columns:repeat(4,1fr)}}
+.lesson-card{
+  display:flex;flex-direction:column;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 22px;box-shadow:var(--shadow-sm);
+  transition:transform .28s ease,box-shadow .28s ease;
+}
+@media (hover:hover){.lesson-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}}
+.lesson-card h3{font-size:18.5px;line-height:1.3;margin-bottom:12px;color:var(--ink)}
+.lesson-meta{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:6px;font-size:13.5px;color:var(--ink-muted)}
+.lesson-meta li{display:flex;gap:8px}
+.lesson-meta li svg{flex:none;margin-top:.28em;color:var(--garnet)}
+.lesson-price{font-family:var(--serif);font-size:27px;letter-spacing:-.03em;margin-bottom:16px;color:var(--garnet-text)}
+.lesson-card .btn{margin-top:auto;width:100%}
+
+/* Bundle: тёмный гранат с лавандовой кнопкой — наглядный контраст двух цветов */
+.lesson-card--bundle{
+  background:linear-gradient(165deg,#6B2040,#4A1528);
+  color:#F4E8F5;
+  border-color:rgba(217,204,232,.35);
+  box-shadow:0 24px 48px -26px rgba(94,26,51,.55);
+}
+.lesson-card--bundle h3{color:#F4E8F5}
+.lesson-card--bundle .lesson-price{color:#F4E8F5}
+.lesson-card--bundle .lesson-meta{color:#C8B8D8}
+.lesson-card--bundle .lesson-meta li svg{color:var(--lavender)}
+.lesson-card--bundle .lesson-tag{color:var(--lavender)}
+.lesson-card--bundle .btn-primary{
+  background:linear-gradient(180deg,#E8DDF0 0%,#D9CCE8 55%,#C8B8D8 100%);
+  color:#4A1528;
+  box-shadow:
+    0 6px 0 #A690B8,
+    0 10px 20px -4px rgba(74,21,40,.4),
+    0 22px 36px -14px rgba(74,21,40,.35),
+    inset 0 2px 0 rgba(255,255,255,.55),
+    inset 0 -2px 0 rgba(0,0,0,.08);
+}
+.lesson-card--bundle .btn-primary:hover{
+  background:linear-gradient(180deg,#F0E8F7 0%,#E8DDF0 55%,#D9CCE8 100%);
+  transform:translateY(-3px);
+  box-shadow:
+    0 9px 0 #A690B8,
+    0 14px 26px -4px rgba(74,21,40,.45),
+    0 32px 48px -16px rgba(74,21,40,.4),
+    inset 0 2px 0 rgba(255,255,255,.6),
+    inset 0 -2px 0 rgba(0,0,0,.08);
+}
+.lesson-card--bundle .btn-primary:active{
+  transform:translateY(3px);
+  box-shadow:
+    0 2px 0 #A690B8,
+    0 4px 8px -2px rgba(74,21,40,.4),
+    inset 0 1px 0 rgba(255,255,255,.4);
+}
+.lesson-tag{
+  display:inline-block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  color:var(--garnet-text);margin-bottom:10px;
+}
+.restore{
+  margin-top:24px;background:rgba(139,46,76,.05);border:1px solid var(--line);
+  border-radius:16px;padding:16px 20px;
+}
+.restore summary{cursor:pointer;font-weight:600;font-size:14.5px;list-style:none;display:flex;align-items:center;gap:9px;color:var(--ink-soft)}
+.restore summary::-webkit-details-marker{display:none}
+.restore summary::after{content:"+";margin-left:auto;font-size:18px;color:var(--garnet);font-weight:400}
+.restore[open] summary::after{content:"–"}
+.restore-form{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.restore-form input{flex:1 1 220px}
+
+/* ============================== BOOKING ============================== */
+.booking{
+  display:grid;gap:20px;
+  background:var(--surface);border:1px solid var(--line);border-radius:24px;
+  padding:clamp(18px,3vw,30px);box-shadow:var(--shadow-md);
+}
+@media (min-width:980px){.booking{grid-template-columns:1.25fr .85fr;gap:30px}}
+
+.field{margin-bottom:16px}
+.field label,.field .label{display:block;font-size:13px;font-weight:600;letter-spacing:.02em;margin-bottom:7px;color:var(--ink-soft)}
+.input,select.input,textarea.input{
+  width:100%;min-height:48px;padding:12px 15px;
+  font:16px/1.4 var(--sans);color:var(--ink);
+  background:var(--surface-2);border:1px solid var(--line-strong);border-radius:13px;
+  transition:border-color .2s,box-shadow .2s;
+  appearance:none;
+}
+select.input{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%232E1A2E' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;padding-right:42px;
+}
+.input::placeholder{color:var(--ink-dim)}
+.input:focus{outline:none;border-color:var(--garnet);box-shadow:0 0 0 3px rgba(139,46,76,.16);background:#fff}
+.input[aria-invalid="true"]{border-color:var(--red)}
+
+.months{display:grid;gap:20px;margin-top:6px}
+@media (min-width:720px){.months{grid-template-columns:1fr 1fr}}
+.month{border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--surface-2)}
+.month-head{
+  font-family:var(--serif);font-size:15.5px;font-weight:600;text-align:center;
+  text-transform:capitalize;margin-bottom:10px;letter-spacing:-.01em;color:var(--ink);
+}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-dow{
+  text-align:center;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-muted);font-weight:700;padding:4px 0 7px;
+}
+.cal-day{
+  aspect-ratio:1;min-height:34px;display:flex;align-items:center;justify-content:center;
+  border:1px solid transparent;border-radius:10px;background:transparent;
+  font:500 14px/1 var(--sans);color:var(--ink);cursor:pointer;
+  transition:background-color .16s,color .16s,border-color .16s;
+}
+@media (min-width:480px){.cal-day{min-height:40px;font-size:14.5px}}
+.cal-day:hover:not(:disabled){background:rgba(139,46,76,.1)}
+.cal-day.is-today{border-color:var(--line-strong);font-weight:700}
+.cal-day.is-selected{background:var(--garnet);color:#fff;font-weight:700}
+.cal-day:disabled{color:rgba(46,26,46,.25);cursor:not-allowed;text-decoration:line-through}
+.cal-day.is-empty{visibility:hidden;pointer-events:none}
+
+.slots-box{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.slots-title{font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:10px}
+.slots{display:flex;flex-wrap:wrap;gap:8px}
+.slot{
+  min-height:44px;padding:9px 15px;border-radius:11px;border:1px solid var(--line-strong);
+  background:var(--surface);font:600 14px/1 var(--sans);color:var(--ink);cursor:pointer;
+  transition:background-color .16s,border-color .16s,color .16s;
+}
+.slot:hover{border-color:var(--garnet);background:rgba(139,46,76,.08)}
+.slot.is-selected{background:var(--garnet);border-color:var(--garnet);color:#fff;font-weight:700}
+.slots-empty{font-size:14px;color:var(--ink-muted)}
+
+.booking-side{display:flex;flex-direction:column;gap:16px}
+.summary{
+  background:rgba(217,204,232,.3);border:1px solid var(--line);border-radius:16px;padding:16px 18px;
+}
+.summary h3{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);font-weight:700;margin-bottom:10px}
+.summary-line{font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+.summary-line strong{color:var(--ink);font-weight:600}
+
+.checkbox{display:flex;gap:11px;align-items:flex-start;font-size:13.5px;line-height:1.5;color:var(--ink-soft);cursor:pointer}
+.checkbox input{
+  appearance:none;flex:none;width:22px;height:22px;margin:1px 0 0;
+  border:1.5px solid var(--line-strong);border-radius:7px;background:var(--surface);cursor:pointer;
+  transition:background-color .18s,border-color .18s;
+  display:grid;place-content:center;
+}
+.checkbox input::before{
+  content:"";width:11px;height:6px;border-left:2px solid #fff;border-bottom:2px solid #fff;
+  transform:rotate(-45deg) translateY(-1px) scale(0);transition:transform .16s ease;
+}
+.checkbox input:checked{background:var(--garnet);border-color:var(--garnet)}
+.checkbox input:checked::before{transform:rotate(-45deg) translateY(-1px) scale(1)}
+.checkbox a{color:var(--garnet-text);text-decoration:underline;text-underline-offset:2px}
+.honeypot{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;pointer-events:none}
+
+.confirm-box{text-align:center;padding:24px 8px}
+.confirm-box .ico{
+  width:56px;height:56px;border-radius:50%;background:rgba(217,204,232,.5);color:var(--garnet-text);
+  display:grid;place-content:center;margin:0 auto 16px;
+}
+.confirm-box h3{font-size:21px;margin-bottom:10px;color:var(--ink)}
+.confirm-box p{font-size:14.5px;color:var(--ink-soft)}
+
+/* ============================== CONTACTS ============================== */
+.contact-grid{display:grid;gap:16px}
+@media (min-width:700px){.contact-grid{grid-template-columns:repeat(2,1fr)}}
+.contact-card{
+  display:flex;align-items:center;gap:16px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;text-align:left;color:inherit;box-shadow:var(--shadow-sm);
+  cursor:pointer;font:inherit;width:100%;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+@media (hover:hover){.contact-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:rgba(139,46,76,.4)}}
+.contact-card .ico-circle{
+  width:48px;height:48px;border-radius:50%;flex:none;display:grid;place-content:center;
+  background:rgba(217,204,232,.5);color:var(--garnet-text);
+}
+.contact-card .txt{min-width:0}
+.contact-card .k{display:block;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-muted);font-weight:700;margin-bottom:2px}
+.contact-card .v{display:block;font-family:var(--serif);font-size:19px;letter-spacing:-.02em;word-break:break-word;color:var(--ink)}
+
+.social-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+.social-btn{
+  display:inline-flex;align-items:center;gap:9px;
+  min-height:48px;padding:11px 20px;border-radius:999px;border:1px solid transparent;
+  font:600 14.5px/1 var(--sans);background:var(--lavender-soft);color:var(--ink-dim);
+  cursor:not-allowed;user-select:none;
+}
+.social-btn svg{opacity:.55}
+.social-btn:not(.is-disabled){
+  background:var(--surface);border-color:var(--line-strong);color:var(--ink);cursor:pointer;
+  transition:background-color .2s,border-color .2s;
+}
+.social-btn:not(.is-disabled):hover{background:var(--lavender-pale);border-color:var(--garnet)}
+
+/* =============================== FOOTER ===============================
+   Тёмный гранат + лавандовая дымка. Наглядный переход двух цветов:
+   градиентная линия сверху (lavender → garnet) и радиальные всполохи.
+   ======================================================================= */
+.site-footer{
+  position:relative;
+  background:linear-gradient(180deg,#4A1528 0%,#5E1A33 40%,#4A1228 100%);
+  color:#C8B8D8;
+  padding:clamp(48px,7vw,72px) 0 28px;font-size:14px;
+  overflow:hidden;
+}
+.site-footer::before{
+  /* Градиентная линия-переход: lavender haze → garnet red */
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;z-index:3;
+  background:linear-gradient(90deg,#D9CCE8 0%,#B88BA8 50%,#8B2E4C 100%);
+}
+.site-footer::after{
+  /* Лавандовая дымка поверх граната + мягкое свечение снизу */
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse at 20% 0%,rgba(217,204,232,.18),transparent 55%),
+    radial-gradient(ellipse at 80% 20%,rgba(217,204,232,.10),transparent 50%),
+    radial-gradient(ellipse at 50% 100%,rgba(139,46,76,.35),transparent 65%),
+    linear-gradient(180deg,rgba(217,204,232,.08) 0%,transparent 20%);
+}
+.site-footer > .wrap{position:relative;z-index:1}
+.footer-grid{display:grid;gap:32px}
+@media (min-width:760px){.footer-grid{grid-template-columns:1.3fr 1fr 1fr}}
+.site-footer h4{
+  font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--lavender);font-weight:700;margin-bottom:14px;
+}
+.site-footer a{color:#E8DDF0;text-decoration:none;transition:color .2s}
+.site-footer a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:3px}
+.footer-brand strong{display:block;font-family:var(--serif);font-size:20px;color:#F4E8F5;letter-spacing:-.02em;margin-bottom:8px}
+.footer-brand p{max-width:320px;line-height:1.6;font-size:13.5px;color:#C8B8D8}
+.footer-links{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.footer-bottom{
+  margin-top:36px;padding-top:22px;border-top:1px solid rgba(217,204,232,.18);
+  font-size:12.5px;line-height:1.7;color:#A898B8;
+}
+.footer-bottom p + p{margin-top:6px}
+.rkn-note{display:block;margin-top:4px}
+/* RKN: базово #D32F2F для светлых секций */
+.rkn-placeholder{color:var(--red);font-weight:600}
+/* На тёмном подвале — более светлый оттенок для читаемости (тот же семантический красный) */
+.site-footer .rkn-placeholder{color:#FF8FA0;font-weight:700}
+.build-tag{display:block;margin-top:10px;font-size:11px;letter-spacing:.08em;color:rgba(200,184,216,.5)}
+.footer-contact-link{
+  color:#E8DDF0;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  cursor:pointer;
+  background:none;
+  border:0;
+  padding:0;
+  font:inherit;
+}
+.footer-contact-link:hover{color:#fff}
+
+/* =============================== МОДАЛКИ =============================== */
+.modal{
+  position:fixed;inset:0;z-index:120;display:none;
+  align-items:flex-end;justify-content:center;
+  background:rgba(46,26,46,.5);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+}
+.modal.is-open{display:flex}
+@media (min-width:768px){.modal{align-items:center;padding:24px}}
+.modal-card{
+  background:var(--surface);width:100%;max-width:540px;
+  border-radius:24px 24px 0 0;padding:26px 22px calc(26px + env(safe-area-inset-bottom));
+  max-height:92vh;overflow-y:auto;position:relative;
+  border:1px solid var(--line);
+  animation:sheetUp .32s cubic-bezier(.2,.8,.3,1);
+}
+@media (min-width:768px){
+  .modal-card{border-radius:22px;padding:32px;animation:cardIn .24s ease}
+}
+@keyframes sheetUp{from{transform:translateY(28px);opacity:.6}to{transform:none;opacity:1}}
+@keyframes cardIn{from{transform:scale(.97);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.modal-card{animation:none}}
+.modal-close{
+  position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);background:transparent;cursor:pointer;color:var(--ink);
+  display:grid;place-content:center;transition:background-color .2s;
+}
+.modal-close:hover{background:var(--lavender-pale)}
+.modal h3{font-size:22px;margin-bottom:8px;padding-right:40px;color:var(--ink)}
+.modal .sub{font-size:14.5px;color:var(--ink-soft);margin-bottom:22px}
+.radio-row{display:flex;gap:10px;flex-wrap:wrap}
+.radio-pill{
+  display:inline-flex;align-items:center;gap:9px;min-height:48px;padding:11px 18px;
+  border:1px solid var(--line-strong);border-radius:12px;cursor:pointer;font-size:14.5px;font-weight:500;
+  transition:border-color .2s,background-color .2s;color:var(--ink-soft);
+}
+.radio-pill:has(input:checked){border-color:var(--garnet);background:rgba(139,46,76,.06);color:var(--ink)}
+.radio-pill input{accent-color:var(--garnet);width:17px;height:17px}
+.form-success{text-align:center;padding:18px 0}
+.form-success .ico{width:56px;height:56px;border-radius:50%;background:rgba(217,204,232,.5);color:var(--garnet-text);display:grid;place-content:center;margin:0 auto 14px}
+
+.contact-options{display:grid;gap:8px;margin-bottom:16px}
+.contact-option{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 16px;min-height:56px;
+  border:1px solid var(--line-strong);border-radius:14px;
+  background:var(--surface);color:var(--ink);font:500 15px/1.2 var(--sans);
+  cursor:pointer;text-align:left;
+  transition:border-color .18s,background-color .18s,transform .18s;
+}
+.contact-option:hover{border-color:var(--garnet);background:rgba(139,46,76,.05);transform:translateY(-1px)}
+.contact-option-icon{
+  width:32px;height:32px;border-radius:50%;flex:none;
+  background:rgba(217,204,232,.6);color:var(--garnet-text);
+  display:grid;place-content:center;
+}
+.contact-option-icon svg{display:block}
+
+/* ================================ КВИЗ ================================ */
+.quiz-step{display:none}
+.quiz-step.is-active{display:block}
+.quiz-progress{display:flex;gap:6px;margin-bottom:20px}
+.quiz-progress i{flex:1;height:3px;border-radius:2px;background:rgba(139,46,76,.12)}
+.quiz-progress i.is-done{background:var(--garnet)}
+.quiz-q{font-family:var(--serif);font-size:20px;line-height:1.3;margin-bottom:18px;letter-spacing:-.015em;color:var(--ink)}
+.quiz-options{display:grid;gap:9px}
+.quiz-opt{
+  text-align:left;min-height:52px;padding:14px 18px;border-radius:14px;
+  border:1px solid var(--line-strong);background:var(--surface);cursor:pointer;
+  font:500 15px/1.35 var(--sans);color:var(--ink);
+  transition:border-color .18s,background-color .18s,transform .18s;
+}
+.quiz-opt:hover{border-color:var(--garnet);background:rgba(139,46,76,.05);transform:translateY(-1px)}
+.quiz-result{text-align:center}
+.quiz-result .kicker{font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--garnet-text);font-weight:700;margin-bottom:10px}
+.quiz-result h4{font-family:var(--serif);font-size:21px;margin-bottom:10px;letter-spacing:-.015em;color:var(--ink)}
+.quiz-result p{font-size:14.5px;color:var(--ink-soft);margin-bottom:20px}
+.quiz-back{margin-top:14px;background:none;border:0;color:var(--ink-muted);font-size:13.5px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;min-height:44px}
+
+/* ============================== МАРИЯ ============================== */
+.maria{
+  position:fixed;right:16px;bottom:16px;z-index:90;
+  width:min(370px,calc(100vw - 32px));
+  display:none;flex-direction:column;
+  background:var(--surface);border:1px solid var(--line);border-radius:20px;
+  box-shadow:0 30px 70px -30px rgba(46,26,46,.45);
+  overflow:hidden;
+  transition:bottom .3s ease;
+}
+body.has-cookie .maria{bottom:96px}
+@media (min-width:640px){.maria{right:24px;bottom:24px} body.has-cookie .maria{bottom:104px}}
+.maria.is-open{display:flex;animation:mariaIn .34s cubic-bezier(.2,.8,.3,1)}
+@keyframes mariaIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.maria.is-open{animation:none}}
+.maria-head{
+  display:flex;align-items:center;gap:11px;padding:14px 16px;
+  background:linear-gradient(160deg,#9D3A5A,#6B2040);color:#fff;
+  border-bottom:1px solid rgba(0,0,0,.1);
+}
+.maria-avatar{
+  width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-content:center;
+  background:#FFFFFF;color:var(--garnet-text);font-family:var(--serif);font-size:17px;font-weight:600;
+}
+.maria-head .who{min-width:0;flex:1}
+.maria-head .who strong{display:block;font-size:14.5px;line-height:1.2;color:#fff}
+.maria-head .who span{display:block;font-size:11.5px;color:rgba(255,255,255,.75);margin-top:2px}
+.maria-head button{
+  width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.18);color:#fff;
+  cursor:pointer;display:grid;place-content:center;flex:none;
+}
+.maria-head button:hover{background:rgba(255,255,255,.28)}
+.maria-body{padding:14px 16px;max-height:min(52vh,420px);overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+.msg{
+  font-size:14px;line-height:1.5;padding:11px 14px;border-radius:14px;max-width:92%;
+  animation:msgIn .28s ease;
+}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.msg{animation:none}}
+.msg--bot{background:var(--lavender-pale);color:var(--ink);border-bottom-left-radius:5px;align-self:flex-start}
+.msg--user{background:var(--garnet);color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
+.msg--bot a{color:var(--garnet-text);font-weight:600}
+.maria-quick{display:flex;flex-direction:column;gap:7px;padding:0 16px 12px}
+.quick-btn{
+  text-align:left;padding:11px 14px;border-radius:12px;min-height:44px;
+  border:1px solid var(--line-strong);background:var(--surface);cursor:pointer;
+  font:500 13.5px/1.3 var(--sans);color:var(--ink-soft);
+  transition:border-color .18s,background-color .18s,color .18s;
+}
+.quick-btn:hover{border-color:var(--garnet);background:var(--lavender-pale);color:var(--ink)}
+.maria-input{
+  display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--line);background:var(--surface);
+}
+.maria-input input{
+  flex:1;min-height:44px;padding:10px 14px;border-radius:12px;border:1px solid var(--line-strong);
+  font:14.5px var(--sans);background:var(--surface-2);color:var(--ink);
+}
+.maria-input input::placeholder{color:var(--ink-dim)}
+.maria-input input:focus{outline:none;border-color:var(--garnet);box-shadow:0 0 0 3px rgba(139,46,76,.15);background:#fff}
+.maria-input button{
+  width:44px;height:44px;border-radius:12px;border:0;background:var(--garnet);color:#fff;
+  cursor:pointer;display:grid;place-content:center;flex:none;
+}
+.maria-input button:hover{background:var(--garnet-hover)}
+
+.maria-bubble{
+  position:fixed;right:16px;bottom:16px;z-index:89;
+  width:58px;height:58px;border-radius:50%;border:0;cursor:pointer;
+  background:var(--garnet);color:#fff;display:grid;place-content:center;
+  box-shadow:0 14px 30px -10px rgba(139,46,76,.6);
+  transition:transform .2s ease,background-color .2s;
+}
+body.has-cookie .maria-bubble{bottom:96px}
+@media (min-width:640px){.maria-bubble{right:24px;bottom:24px} body.has-cookie .maria-bubble{bottom:104px}}
+.maria-bubble:hover{transform:scale(1.06);background:var(--garnet-hover)}
+.maria-bubble .ping{
+  position:absolute;top:-2px;right:-2px;width:14px;height:14px;border-radius:50%;
+  background:var(--lavender);border:2px solid var(--bg);
+}
+.maria-bubble.is-hidden{display:none}
+
+/* ============================== COOKIE ===============================
+   Светлая плашка с градиентной линией сверху lavender → garnet.
+   ======================================================================= */
+.cookie{
+  position:fixed;left:0;right:0;bottom:0;z-index:95;
+  background:#FFFFFF;color:var(--ink-soft);
+  padding:16px 0 calc(16px + env(safe-area-inset-bottom));
+  display:none;animation:sheetUp .4s ease;
+  box-shadow:0 -8px 24px -12px rgba(46,26,46,.22);
+}
+.cookie::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--lavender),#B88BA8,var(--garnet));
+}
+.cookie.is-open{display:block;position:fixed}
+.cookie .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:14px;position:relative}
+.cookie p{flex:1 1 320px;font-size:13.5px;line-height:1.55;margin:0;color:var(--ink-soft)}
+.cookie a{color:var(--garnet-text);text-underline-offset:2px}
+.cookie .btn{
+  background:linear-gradient(180deg,#A24A6C 0%,#8B2E4C 55%,#7A2344 100%);
+  color:#fff;min-height:44px;padding:11px 24px;font-size:14.5px;flex:none;
+  box-shadow:
+    0 4px 0 var(--garnet-edge),
+    0 10px 20px -10px rgba(94,26,51,.35),
+    inset 0 1px 0 rgba(255,255,255,.22);
+}
+.cookie .btn:hover{background:linear-gradient(180deg,#B25878 0%,#9D3A5A 55%,#8B2E4C 100%);transform:translateY(-1px)}
+.cookie .btn:active{transform:translateY(1px);box-shadow:0 1px 0 var(--garnet-edge), 0 4px 8px -6px rgba(94,26,51,.3)}
+
+/* ============================ LEGAL OVERLAY ============================ */
+.legal{
+  position:fixed;inset:0;z-index:130;background:var(--bg);
+  display:none;overflow-y:auto;
+}
+.legal.is-open{display:block}
+.legal-bar{
+  position:sticky;top:0;background:rgba(250,246,252,.94);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);z-index:2;
+}
+.legal-bar .wrap{display:flex;align-items:center;gap:16px;min-height:64px}
+.legal-bar strong{font-family:var(--serif);font-size:16px;flex:1;letter-spacing:-.01em;color:var(--ink)}
+.legal-doc{max-width:760px;margin:0 auto;padding:36px 20px 80px;font-size:15px;line-height:1.72;color:var(--ink-soft)}
+@media (min-width:768px){.legal-doc{padding:52px 32px 100px}}
+.legal-doc h1{font-size:clamp(24px,4vw,34px);color:var(--ink);margin-bottom:8px;letter-spacing:-.02em}
+.legal-doc .upd{font-size:13px;color:var(--ink-muted);margin-bottom:30px}
+.legal-doc h2{font-family:var(--sans);font-size:16.5px;font-weight:700;color:var(--garnet-text);margin:30px 0 10px;letter-spacing:0}
+.legal-doc p{margin:0 0 12px}
+.legal-doc ul{margin:0 0 14px;padding-left:20px}
+.legal-doc li{margin-bottom:6px}
+.legal-doc strong{color:var(--ink)}
+.legal-doc a{color:var(--garnet-text)}
+
+/* ============================== УТИЛИТЫ ============================== */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.reveal.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .badge .dot{animation:none}
+  *{scroll-behavior:auto!important}
+}
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);z-index:200;
+  background:var(--garnet-edge);color:#fff;padding:13px 22px;border-radius:999px;
+  font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;
+  max-width:calc(100vw - 32px);text-align:center;
+  box-shadow:0 12px 30px -10px rgba(46,26,46,.5);
+}
+.toast.is-open{opacity:1;transform:translate(-50%,0)}
+body.has-cookie .toast{bottom:104px}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Перейти к содержанию</a>
+
+<!-- ================================ ХЕДЕР ================================ -->
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#hero" aria-label="Виктория Протасова — на главную">
+      <strong>Виктория Протасова</strong>
+      <span>психолог</span>
+    </a>
+
+    <nav class="nav" id="primary-nav" aria-label="Основная навигация">
+      <a href="#hero" class="nav-home" data-scroll-top>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10.5L12 4l8 6.5V20a1 1 0 01-1 1h-4.5v-6h-5v6H5a1 1 0 01-1-1V10.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Главная
+      </a>
+      <a href="#about">Обо мне</a>
+      <a href="#services">Услуги</a>
+      <a href="#cases">Кейсы</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#lessons">Мини-уроки</a>
+      <a href="#booking">Запись</a>
+      <a href="#contacts">Контакты</a>
+      <a class="btn btn-primary btn-sm nav-cta" href="#booking">Записаться</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn btn-primary btn-sm" href="#booking">Записаться</a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- =============================== HERO =============================== -->
+  <section class="section hero noise" id="hero" data-bg="base">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="badge reveal"><span class="dot" aria-hidden="true"></span>Принимаю новых клиентов</span>
+        <h1 class="h1 reveal">Помогаю услышать себя — и вернуть опору</h1>
+        <p class="lead reveal">
+          Работаю со взрослыми бережно и структурно: тревога и перегрузка, отношения и границы,
+          самооценка, периоды перемен. Онлайн и очно, в безопасном темпе.
+        </p>
+        <div class="hero-actions reveal">
+          <a class="btn btn-primary" href="#booking">Записаться</a>
+          <button class="btn btn-secondary" type="button" data-open-quiz>Подобрать запрос</button>
+        </div>
+        <ul class="hero-facts reveal">
+          <li>Встреча 50–60 минут</li>
+          <li>Онлайн и очно</li>
+          <li>Первая встреча — прояснение запроса</li>
+        </ul>
+      </div>
+
+      <div class="hero-media reveal">
+        <img src="https://i.imgur.com/QIL3SZc.jpeg"
+             alt="Виктория Протасова, психолог"
+             width="560" height="700" fetchpriority="high" decoding="async">
+        <div class="hero-media-card">
+          <strong>Виктория Протасова</strong>
+          <span>психолог, индивидуальная работа со взрослыми</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================== ABOUT =============================== -->
+  <section class="section" id="about" data-bg="alt">
+    <div class="wrap about-grid">
+      <div class="reveal">
+        <p class="eyebrow">01 — Обо мне</p>
+        <p class="about-quote">
+          Сначала вместе проясняем запрос, затем шаг за шагом идём к изменениям.
+          Без давления, без «надо» и без оценок.
+        </p>
+      </div>
+
+      <div class="about-body reveal">
+        <p>
+          <strong>Виктория Протасова</strong>, психолог, имею высшее образование.
+          Работаю со взрослыми в индивидуальном формате онлайн и очно.
+        </p>
+        <p>
+          Мой подход — бережный и структурный: сначала вместе проясняем запрос, затем шаг за шагом идём
+          к изменениям. Без давления, без «надо» и без оценок. В работе опираюсь на доказательные
+          направления и регулярную супервизию.
+        </p>
+
+        <div class="about-meta">
+          <div class="info-card">
+            <h3>Как проходит встреча</h3>
+            <ul>
+              <li>50–60 минут</li>
+              <li>В безопасном темпе</li>
+              <li>Формат дальнейшей работы обсуждаем вместе</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>С чем я работаю</h3>
+            <ul>
+              <li>Тревога и перегрузка</li>
+              <li>Отношения и границы</li>
+              <li>Самооценка</li>
+              <li>Трудности с ресурсом и отдыхом</li>
+              <li>Периоды перемен</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SERVICES ============================== -->
+  <section class="section" id="services" data-bg="base">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">02 — Услуги</p>
+        <h2 class="h2">Консультации онлайн и очно</h2>
+        <p class="lead">Выберите формат — цена обновится автоматически. Очные консультации на 1 000 ₽ дороже онлайн.</p>
+      </div>
+
+      <div class="service-grid" id="serviceGrid">
+        <article class="service-card reveal">
+          <h3>Первичная консультация</h3>
+          <p class="service-meta">30 минут · знакомство и прояснение запроса</p>
+          <div class="seg" role="group" aria-label="Формат консультации">
+            <button type="button" class="seg-btn" data-format="online" aria-pressed="true">Онлайн</button>
+            <button type="button" class="seg-btn" data-format="offline" aria-pressed="false">Очно</button>
+          </div>
+          <div class="price">
+            <span class="price-val" data-online="2 000 ₽" data-offline="3 000 ₽">2 000 ₽</span>
+            <span class="price-note">30 минут</span>
+          </div>
+          <div class="service-actions">
+            <button type="button" class="btn btn-primary" data-book="primary-online">Записаться</button>
+            <button type="button" class="btn btn-ghost" data-open-lead>Оставить заявку</button>
+          </div>
+        </article>
+
+        <article class="service-card reveal">
+          <h3>Индивидуальная консультация</h3>
+          <p class="service-meta">50 минут · базовая услуга</p>
+          <div class="seg" role="group" aria-label="Формат консультации">
+            <button type="button" class="seg-btn" data-format="online" aria-pressed="true">Онлайн</button>
+            <button type="button" class="seg-btn" data-format="offline" aria-pressed="false">Очно</button>
+          </div>
+          <div class="price">
+            <span class="price-val" data-online="5 000 ₽" data-offline="6 000 ₽">5 000 ₽</span>
+            <span class="price-note">50 минут</span>
+          </div>
+          <div class="service-actions">
+            <button type="button" class="btn btn-primary" data-book="individual-online">Записаться</button>
+            <button type="button" class="btn btn-ghost" data-open-lead>Оставить заявку</button>
+          </div>
+        </article>
+
+        <article class="service-card reveal">
+          <h3>Парная консультация</h3>
+          <p class="service-meta">80 минут · для двоих</p>
+          <div class="seg" role="group" aria-label="Формат консультации">
+            <button type="button" class="seg-btn" data-format="online" aria-pressed="true">Онлайн</button>
+            <button type="button" class="seg-btn" data-format="offline" aria-pressed="false">Очно</button>
+          </div>
+          <div class="price">
+            <span class="price-val" data-online="8 000 ₽" data-offline="9 000 ₽">8 000 ₽</span>
+            <span class="price-note">80 минут</span>
+          </div>
+          <div class="service-actions">
+            <button type="button" class="btn btn-primary" data-book="couple-online">Записаться</button>
+            <button type="button" class="btn btn-ghost" data-open-lead>Оставить заявку</button>
+          </div>
+        </article>
+
+        <article class="service-card service-card--digital reveal">
+          <h3>Мини-уроки</h3>
+          <p class="service-meta">Цифровой продукт · доступ сразу после оплаты</p>
+          <div class="price">
+            <span class="price-val">от 990 ₽</span>
+            <span class="price-note">3 урока и пакет</span>
+          </div>
+          <div class="service-actions">
+            <a class="btn btn-primary" href="#lessons">Смотреть уроки</a>
+            <button type="button" class="btn btn-ghost" data-open-lead>Оставить заявку</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================== CASES =============================== -->
+  <section class="section" id="cases" data-bg="alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">03 — Кейсы</p>
+        <h2 class="h2">Как это выглядит в работе</h2>
+        <p class="lead">Пять собирательных историй без идентифицирующих деталей. Без обещаний результата — только описание процесса.</p>
+      </div>
+
+      <div class="cases-carousel reveal">
+        <button type="button" class="arrow cases-arrow cases-prev" data-cases-prev aria-label="Предыдущие кейсы">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div class="cases-track" id="casesTrack" tabindex="0" aria-label="Карусель кейсов">
+
+          <article class="case-card">
+            <span class="case-num" aria-hidden="true">01</span>
+            <h3>Постоянная тревога перед рабочими встречами</h3>
+            <dl>
+              <div><dt>Запрос</dt><dd>Напряжение за несколько дней до встреч, трудности со сном.</dd></div>
+              <div><dt>Процесс</dt><dd>Разбор триггеров, техники саморегуляции, работа с границами в коммуникации.</dd></div>
+              <div><dt>Что изменилось</dt><dd>Участница отметила снижение фоновой тревоги и более спокойное планирование дня.</dd></div>
+            </dl>
+          </article>
+
+          <article class="case-card">
+            <span class="case-num" aria-hidden="true">02</span>
+            <h3>Сложно говорить «нет»</h3>
+            <dl>
+              <div><dt>Запрос</dt><dd>Усталость от перегрузки, чувство вины при отказе.</dd></div>
+              <div><dt>Процесс</dt><dd>Исследование установок, отработка навыка просьб и отказов, дневник ситуаций.</dd></div>
+              <div><dt>Что изменилось</dt><dd>Появились первые самостоятельные отказы без длительного чувства вины.</dd></div>
+            </dl>
+          </article>
+
+          <article class="case-card">
+            <span class="case-num" aria-hidden="true">03</span>
+            <h3>Период перемен: смена работы и переезд</h3>
+            <dl>
+              <div><dt>Запрос</dt><dd>Ощущение потерянности, много решений одновременно.</dd></div>
+              <div><dt>Процесс</dt><dd>Структурирование приоритетов, работа с опорой и ресурсом, план на 4 недели.</dd></div>
+              <div><dt>Что изменилось</dt><dd>Клиентка сформулировала понятный план и снизила ощущение хаоса.</dd></div>
+            </dl>
+          </article>
+
+          <article class="case-card">
+            <span class="case-num" aria-hidden="true">04</span>
+            <h3>Выгорание и потеря интереса</h3>
+            <dl>
+              <div><dt>Запрос</dt><dd>Постоянная усталость, апатия, ощущение «ничего не радует».</dd></div>
+              <div><dt>Процесс</dt><dd>Карта ресурсов, разбор режима отдыха, работа с границами и восстановление коротких пауз в течение дня.</dd></div>
+              <div><dt>Что изменилось</dt><dd>Участник вернул в расписание регулярные короткие перерывы и постепенно восстановил интерес к прежнему хобби.</dd></div>
+            </dl>
+          </article>
+
+          <article class="case-card">
+            <span class="case-num" aria-hidden="true">05</span>
+            <h3>Повторяющиеся ссоры в отношениях</h3>
+            <dl>
+              <div><dt>Запрос</dt><dd>Частые конфликты, ощущение «меня не слышат».</dd></div>
+              <div><dt>Процесс</dt><dd>Разбор коммуникативных паттернов, освоение «Я-сообщений», договорённости о правилах разговора в конфликте.</dd></div>
+              <div><dt>Что изменилось</dt><dd>Пара отметила снижение эскалации и возможность обсуждать сложное без крика.</dd></div>
+            </dl>
+          </article>
+
+        </div>
+
+        <button type="button" class="arrow cases-arrow cases-next" data-cases-next aria-label="Следующие кейсы">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <p class="note">Все кейсы — собирательные, без идентифицирующих деталей и без обещаний результата.</p>
+    </div>
+  </section>
+
+  <!-- =============================== REVIEWS =============================== -->
+  <section class="section" id="reviews" data-bg="base">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">04 — Истории и отзывы</p>
+        <h2 class="h2">Что говорят клиенты</h2>
+      </div>
+
+      <div class="carousel reveal" data-carousel>
+        <button type="button" class="arrow reviews-arrow reviews-prev" data-prev aria-label="Предыдущий отзыв">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div class="carousel-track" id="reviewsTrack" tabindex="0" aria-label="Карусель отзывов">
+
+          <figure class="review" data-placeholder="true">
+            <!-- PLACEHOLDER REVIEW: заменить на реальный отзыв после запуска -->
+            <blockquote>Пришла с ощущением, что всё валится из рук. Уже через несколько встреч стало спокойнее, появился план. Очень бережный и структурный подход.</blockquote>
+            <figcaption>Анна</figcaption>
+          </figure>
+
+          <figure class="review" data-placeholder="true">
+            <!-- PLACEHOLDER REVIEW: заменить на реальный отзыв после запуска -->
+            <blockquote>Ценно, что меня не торопили и не оценивали. Разобрались с границами на работе — впервые за долгое время почувствовала опору.</blockquote>
+            <figcaption>Марина</figcaption>
+          </figure>
+
+          <figure class="review" data-placeholder="true">
+            <!-- PLACEHOLDER REVIEW: заменить на реальный отзыв после запуска -->
+            <blockquote>Обращался в период смены работы. Помогло структурировать хаос в голове и вернуть сон. Рекомендую.</blockquote>
+            <figcaption>Дмитрий</figcaption>
+          </figure>
+
+          <figure class="review" data-placeholder="true">
+            <!-- PLACEHOLDER REVIEW: заменить на реальный отзыв после запуска -->
+            <blockquote>Отдельно благодарю за техники самопомощи между встречами — пользуюсь до сих пор. Спокойно, ясно, без воды.</blockquote>
+            <figcaption>Ольга</figcaption>
+          </figure>
+
+          <figure class="review" data-placeholder="true">
+            <!-- PLACEHOLDER REVIEW: заменить на реальный отзыв после запуска -->
+            <blockquote>Было важно найти специалиста, с которым безопасно. Виктория именно такой психолог: мягко, но по делу.</blockquote>
+            <figcaption>Екатерина</figcaption>
+          </figure>
+
+        </div>
+
+        <button type="button" class="arrow reviews-arrow reviews-next" data-next aria-label="Следующий отзыв">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <p class="note">Отзывы публикуются с согласия клиентов.</p>
+    </div>
+  </section>
+
+  <!-- =============================== LESSONS =============================== -->
+  <section class="section" id="lessons" data-bg="alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">05 — Мини-уроки</p>
+        <h2 class="h2">Самоанализ и возврат в ресурс</h2>
+        <p class="lead">Короткие практики, которые можно пройти самостоятельно. Доступ приходит на email сразу после оплаты.</p>
+      </div>
+
+      <div class="lesson-grid" id="lessonGrid">
+        <!-- Рендерится из products.json -->
+      </div>
+
+      <details class="restore reveal">
+        <summary>Восстановить доступ к купленным материалам</summary>
+        <form class="restore-form" id="restoreForm" novalidate>
+          <input class="input" type="email" name="email" placeholder="Email, указанный при оплате" aria-label="Email для восстановления доступа" required>
+          <button class="btn btn-secondary" type="submit">Отправить ссылку</button>
+        </form>
+        <p class="note" id="restoreNote">Проверим оплату в базе заказов и отправим ссылку на доступ на этот email.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- =============================== BOOKING =============================== -->
+  <section class="section" id="booking" data-bg="base">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">06 — Онлайн-запись</p>
+        <h2 class="h2">Выберите удобное время</h2>
+        <p class="lead">Понедельник–пятница 10:00–20:00, суббота 11:00–16:00. Между встречами — буфер 15 минут.</p>
+      </div>
+
+      <!-- DEMO CALENDAR. Заменить на интеграцию с Яндекс.Календарём
+           (backlog #CAL-01) до публикации реальных слотов. -->
+      <div class="booking reveal" id="booking-calendar" data-demo="true">
+
+        <div class="booking-main">
+          <div class="field">
+            <label for="booking-service">Услуга</label>
+            <select class="input" id="booking-service" aria-describedby="booking-hint"></select>
+            <p class="note" id="booking-hint" style="margin-top:8px">Длительность слота и доступное время зависят от выбранной услуги.</p>
+          </div>
+
+          <div class="months" id="booking-months" aria-live="polite"></div>
+
+          <div class="slots-box">
+            <p class="slots-title" id="slots-title">Свободное время</p>
+            <div class="slots" id="booking-slots" role="group" aria-labelledby="slots-title">
+              <p class="slots-empty">Сначала выберите дату в календаре.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="booking-side">
+          <div class="summary">
+            <h3>Ваша запись</h3>
+            <p class="summary-line" id="booking-summary">Услуга не выбрана</p>
+          </div>
+
+          <form id="booking-form" novalidate>
+            <div class="field">
+              <label for="booking-name">Имя</label>
+              <input class="input" id="booking-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="booking-phone">Телефон</label>
+              <input class="input" id="booking-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
+            </div>
+
+            <input class="honeypot" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <label class="checkbox" for="booking-consent" style="margin-bottom:16px">
+              <input type="checkbox" id="booking-consent" name="consent">
+              <span>Нажимая на кнопку «Подтвердить запись», я даю своё согласие на обработку моих персональных данных и принимаю условия <a href="#legal-consent" data-legal="consent">соглашения</a>.</span>
+            </label>
+
+            <button class="btn btn-primary btn-block" type="submit" id="booking-submit" disabled>Подтвердить запись</button>
+            <p class="note" id="booking-error" style="color:#D32F2F;display:none" role="alert"></p>
+          </form>
+
+          <div class="confirm-box" id="booking-confirm" hidden>
+            <div class="ico">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Вы записаны</h3>
+            <p id="booking-confirm-text"></p>
+            <button type="button" class="btn btn-secondary btn-sm" id="booking-reset" style="margin-top:16px">Изменить запись</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================== CONTACTS =============================== -->
+  <section class="section" id="contacts" data-bg="alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">07 — Контакты</p>
+        <h2 class="h2">Связаться со мной</h2>
+        <p class="lead">Позвоните, напишите на email или оставьте заявку — я отвечу в течение рабочего дня.</p>
+      </div>
+
+      <div class="contact-grid" id="contactGrid">
+        <!-- Рендерится из contacts.json -->
+      </div>
+
+      <div style="margin-top:28px" class="reveal">
+        <button type="button" class="btn btn-primary" data-open-contact>Связаться</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================================ ФУТЕР ================================ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <strong>Виктория Протасова</strong>
+        <p>Психолог. Индивидуальные и парные консультации онлайн и очно. Бережный и структурный подход.</p>
+      </div>
+
+      <div>
+        <h4>Разделы</h4>
+        <ul class="footer-links">
+          <li><a href="#hero" data-scroll-top>Главная</a></li>
+          <li><a href="#about">Обо мне</a></li>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#cases">Кейсы</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#lessons">Мини-уроки</a></li>
+          <li><a href="#booking">Запись</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Документы</h4>
+        <ul class="footer-links">
+          <li><a href="#legal-privacy" data-legal="privacy">Политика обработки персональных данных</a></li>
+          <li><a href="#legal-consent" data-legal="consent">Согласие на обработку персональных данных</a></li>
+          <li><a href="#legal-offer" data-legal="offer">Публичная оферта</a></li>
+          <li><a href="#legal-cookie" data-legal="cookie">Уведомление об использовании cookie</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>ИП Протасова Виктория Павловна · ОГРНИП 316631500164163</p>
+      <p>
+        Связаться:
+        <button type="button" class="footer-contact-link" data-open-contact>телефон</button>
+        ·
+        <button type="button" class="footer-contact-link" data-open-contact>e-mail</button>
+      </p>
+      <!-- TODO(RKN): заменить вымышленные номер и дату на реальные, снять класс rkn-placeholder -->
+      <span class="rkn-note">
+        Уведомление Роскомнадзора № <span class="rkn-placeholder">77-26-000000</span>
+        от <span class="rkn-placeholder">01.01.2026</span>
+      </span>
+      <p style="margin-top:10px">Информация на сайте не является публичной офертой в части медицинских услуг. Психологическое консультирование не заменяет медицинскую помощь.</p>
+      <span class="build-tag">Версия 4.0.0 · Garnet &amp; Lavender</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================ МОДАЛКА: ЗАЯВКА ============================ -->
+<div class="modal" id="leadModal" role="dialog" aria-modal="true" aria-labelledby="leadTitle">
+  <div class="modal-card">
+    <button class="modal-close" type="button" data-close-modal aria-label="Закрыть">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+
+    <div id="leadFormWrap">
+      <h3 id="leadTitle">Оставить заявку</h3>
+      <p class="sub">Напишите, как удобнее связаться — я отвечу в течение рабочего дня.</p>
+
+      <form id="leadForm" novalidate>
+        <div class="field">
+          <label for="lead-name">Имя</label>
+          <input class="input" id="lead-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="lead-phone">Телефон</label>
+          <input class="input" id="lead-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
+        </div>
+
+        <div class="field">
+          <span class="label" id="lead-contact-label">Предпочтительный способ связи</span>
+          <div class="radio-row" role="radiogroup" aria-labelledby="lead-contact-label">
+            <label class="radio-pill"><input type="radio" name="contact" value="call" checked>Звонок</label>
+            <label class="radio-pill"><input type="radio" name="contact" value="email">Email</label>
+          </div>
+        </div>
+
+        <div class="field" id="lead-email-field" hidden>
+          <label for="lead-email">Email</label>
+          <input class="input" id="lead-email" name="email" type="email" autocomplete="email">
+        </div>
+
+        <input class="honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <label class="checkbox" for="lead-consent" style="margin-bottom:18px">
+          <input type="checkbox" id="lead-consent" name="consent">
+          <span>Нажимая на кнопку «Отправить заявку», я даю своё согласие на обработку моих персональных данных и принимаю условия <a href="#legal-consent" data-legal="consent">соглашения</a>.</span>
+        </label>
+
+        <button class="btn btn-primary btn-block" type="submit" id="lead-submit" disabled>Отправить заявку</button>
+        <p class="note" id="lead-error" style="color:#D32F2F;display:none" role="alert"></p>
+      </form>
+    </div>
+
+    <div class="form-success" id="leadSuccess" hidden>
+      <div class="ico">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Спасибо, я свяжусь с вами в течение рабочего дня</h3>
+      <p class="note">Заявка отправлена. Если вопрос срочный — <a href="#" data-open-contact>свяжитесь со мной</a>.</p>
+      <button type="button" class="btn btn-secondary btn-sm" data-close-modal style="margin-top:18px">Закрыть</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ МОДАЛКА: КОНТАКТЫ ============================ -->
+<div class="modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+  <div class="modal-card">
+    <button class="modal-close" type="button" data-close-modal aria-label="Закрыть">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+
+    <div id="contactChooser">
+      <h3 id="contactTitle">Как с вами связаться?</h3>
+      <p class="sub">Выберите удобный способ — я свяжусь с вами в течение рабочего дня.</p>
+
+      <div class="contact-options" id="contactOptions">
+        <button type="button" class="contact-option" data-contact="call">
+          <span class="contact-option-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.4a12 12 0 006.1 6.1l1.4-2 4 1.5v3c0 1.1-.9 2-2 2A17 17 0 013.5 5.5c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </span>
+          <span>Звонок</span>
+        </button>
+        <button type="button" class="contact-option" data-contact="telegram">
+          <span class="contact-option-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 4L2.5 11.2l5.3 1.7L10 20l3-3.7 4.6 3.2L21 4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </span>
+          <span>Telegram</span>
+        </button>
+        <button type="button" class="contact-option" data-contact="max">
+          <span class="contact-option-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="6" stroke="currentColor" stroke-width="1.5"/><path d="M7.5 16V8l4.5 5 4.5-5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span>MAX</span>
+        </button>
+        <button type="button" class="contact-option" data-contact="email">
+          <span class="contact-option-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+          <span>E-mail</span>
+        </button>
+        <button type="button" class="contact-option" data-contact="vk">
+          <span class="contact-option-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 8c.6 5.2 3.6 8 8.4 8h.8v-3c1.8.2 3.1 1.5 3.7 3h2.6c-.7-2.4-2.2-3.8-3.3-4.4 1.1-.6 2.4-1.9 2.9-3.6h-2.4c-.6 1.6-1.8 2.8-3.5 3v-3h-.8C7.6 8 5 9.6 4 8H3z" fill="currentColor"/></svg>
+          </span>
+          <span>ВКонтакте</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="contactField" hidden></div>
+  </div>
+</div>
+
+<!-- ============================== МОДАЛКА: КВИЗ ============================== -->
+<div class="modal" id="quizModal" role="dialog" aria-modal="true" aria-labelledby="quizTitle">
+  <div class="modal-card">
+    <button class="modal-close" type="button" data-close-modal aria-label="Закрыть">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+
+    <h3 id="quizTitle" style="margin-bottom:18px">Подобрать запрос</h3>
+    <div class="quiz-progress" aria-hidden="true"><i class="is-done"></i><i></i><i></i></div>
+
+    <div class="quiz-step is-active" data-step="1">
+      <p class="quiz-q">С чем вы сейчас?</p>
+      <div class="quiz-options">
+        <button type="button" class="quiz-opt" data-q1="anxiety">Тревога и перегрузка</button>
+        <button type="button" class="quiz-opt" data-q1="relations">Отношения и границы</button>
+        <button type="button" class="quiz-opt" data-q1="self">Самооценка</button>
+        <button type="button" class="quiz-opt" data-q1="change">Периоды перемен</button>
+        <button type="button" class="quiz-opt" data-q1="unknown">Не знаю</button>
+      </div>
+    </div>
+
+    <div class="quiz-step" data-step="2">
+      <p class="quiz-q">Какой формат удобнее?</p>
+      <div class="quiz-options">
+        <button type="button" class="quiz-opt" data-q2="online">Онлайн</button>
+        <button type="button" class="quiz-opt" data-q2="offline">Очно</button>
+      </div>
+      <button type="button" class="quiz-back" data-quiz-back>Назад</button>
+    </div>
+
+    <div class="quiz-step" data-step="3">
+      <div class="quiz-result">
+        <p class="kicker">Рекомендация</p>
+        <h4 id="quizServiceName">Индивидуальная консультация, 50 мин</h4>
+        <p id="quizServiceText"></p>
+        <button type="button" class="btn btn-primary btn-block" id="quizBook">Записаться</button>
+        <button type="button" class="quiz-back" data-quiz-restart>Пройти заново</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ ИИ-КОНСУЛЬТАНТ ============================ -->
+<div class="maria" id="mariaPanel" role="dialog" aria-modal="false" aria-labelledby="mariaTitle">
+  <div class="maria-head">
+    <div class="maria-avatar" aria-hidden="true">М</div>
+    <div class="who">
+      <strong id="mariaTitle">Мария</strong>
+      <span>помощник Виктории · навигация по сайту</span>
+    </div>
+    <button type="button" id="mariaClose" aria-label="Свернуть окно">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="maria-body" id="mariaBody"></div>
+
+  <div class="maria-quick" id="mariaQuick">
+    <button type="button" class="quick-btn" data-maria="cases">Узнать про кейсы</button>
+    <button type="button" class="quick-btn" data-maria="booking">Как записаться на консультацию?</button>
+    <button type="button" class="quick-btn" data-maria="services">Какие услуги и стоимость?</button>
+    <button type="button" class="quick-btn" data-maria="lessons">Купить мини-уроки</button>
+    <button type="button" class="quick-btn" data-maria="contacts">Связаться с Викторией</button>
+    <button type="button" class="quick-btn" data-maria="quiz">Подобрать услугу под мой запрос</button>
+    <button type="button" class="quick-btn" data-maria="slots">Узнать о свободных окнах</button>
+  </div>
+
+  <form class="maria-input" id="mariaForm">
+    <input type="text" id="mariaInput" placeholder="Напишите вопрос…" aria-label="Ваш вопрос" autocomplete="off">
+    <button type="submit" aria-label="Отправить">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </form>
+</div>
+
+<button type="button" class="maria-bubble is-hidden" id="mariaBubble" aria-label="Открыть помощника Марию">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9.3 9.3 0 01-3.4-.7L3 21l1.9-5.3A8.3 8.3 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="8.5" cy="11.5" r="1.1" fill="currentColor"/><circle cx="12" cy="11.5" r="1.1" fill="currentColor"/><circle cx="15.5" cy="11.5" r="1.1" fill="currentColor"/></svg>
+  <span class="ping" aria-hidden="true"></span>
+</button>
+
+<!-- ============================== COOKIE ============================== -->
+<div class="cookie" id="cookieBar" role="region" aria-label="Уведомление об использовании cookie">
+  <div class="wrap">
+    <p>
+      Сайт использует файлы cookie для корректной работы и аналитики.
+      Подробнее — в <a href="#legal-cookie" data-legal="cookie">уведомлении об использовании cookie</a>
+      и <a href="#legal-privacy" data-legal="privacy">политике обработки персональных данных</a>.
+    </p>
+    <button type="button" class="btn" id="cookieAccept">Принять</button>
+  </div>
+</div>
+
+<!-- ============================ ЮРИДИЧЕСКИЕ ДОКУМЕНТЫ ============================ -->
+<div class="legal" id="legalOverlay" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+  <div class="legal-bar">
+    <div class="wrap">
+      <strong id="legalTitle">Документ</strong>
+      <button type="button" class="btn btn-secondary btn-sm" id="legalClose">Закрыть</button>
+    </div>
+  </div>
+  <div class="legal-doc" id="legalBody"></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ============================== КОНФИГИ ============================== -->
+<script type="application/json" id="contacts.json">
+{
+  "phone": { "value": "+7-917-616-9999", "href": "tel:+79176169999" },
+  "email": { "value": "spika777@yandex.ru", "href": "mailto:spika777@yandex.ru" },
+  "social": [
+    { "id": "telegram", "label": "Telegram", "url": null },
+    { "id": "max", "label": "MAX", "url": null },
+    { "id": "vk", "label": "ВКонтакте", "url": null }
+  ]
+}
+</script>
+
+<script type="application/json" id="products.json">
+{
+  "lessons": [
+    { "id": "lesson-1", "title": "Самоанализ за 20 минут", "format": "Аудио + PDF-тетрадь", "duration": "20 мин + 5 страниц", "price": "990 ₽", "paymentUrl": "https://demo.prodamus.ru/pay/lesson-1" },
+    { "id": "lesson-2", "title": "Быстрый возврат в ресурс", "format": "Видео + аудио-практика", "duration": "15 мин + 10 мин", "price": "1 290 ₽", "paymentUrl": "https://demo.prodamus.ru/pay/lesson-2" },
+    { "id": "lesson-3", "title": "Дневник состояний: 14 дней", "format": "PDF-дневник + 3 аудио", "duration": "14 дней", "price": "1 490 ₽", "paymentUrl": "https://demo.prodamus.ru/pay/lesson-3" }
+  ],
+  "bundle": { "id": "bundle-all", "title": "Все три урока", "format": "Доступ ко всем материалам", "duration": "Пакет", "price": "2 990 ₽", "paymentUrl": "https://demo.prodamus.ru/pay/bundle-all" }
+}
+</script>
+
+<script type="application/json" id="reviews.json">
+{
+  "reviews": [
+    { "name": "Анна", "text": "Пришла с ощущением, что всё валится из рук. Уже через несколько встреч стало спокойнее, появился план. Очень бережный и структурный подход.", "placeholder": true },
+    { "name": "Марина", "text": "Ценно, что меня не торопили и не оценивали. Разобрались с границами на работе — впервые за долгое время почувствовала опору.", "placeholder": true },
+    { "name": "Дмитрий", "text": "Обращался в период смены работы. Помогло структурировать хаос в голове и вернуть сон. Рекомендую.", "placeholder": true },
+    { "name": "Ольга", "text": "Отдельно благодарю за техники самопомощи между встречами — пользуюсь до сих пор. Спокойно, ясно, без воды.", "placeholder": true },
+    { "name": "Екатерина", "text": "Было важно найти специалиста, с которым безопасно. Виктория именно такой психолог: мягко, но по делу.", "placeholder": true }
+  ]
+}
+</script>
+
+<script>
+/* ==========================================================================
+   ВЕРСИЯ 4.0.0 · Garnet Red + Lavender Haze
+   ========================================================================== */
+const APP_VERSION = '4.0.0';
+
+(function () {
+  'use strict';
+
+  const $  = (sel, ctx) => (ctx || document).querySelector(sel);
+  const $$ = (sel, ctx) => Array.from((ctx || document).querySelectorAll(sel));
+  const pad = n => String(n).padStart(2, '0');
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function readJSON(id) {
+    const el = document.getElementById(id);
+    try { return JSON.parse(el.textContent); } catch (e) { return null; }
+  }
+
+  let toastTimer;
+  function toast(text) {
+    const el = $('#toast');
+    el.textContent = text;
+    el.classList.add('is-open');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('is-open'), 3200);
+  }
+
+  /* ======================================================================
+     1. ХЕДЕР
+     ====================================================================== */
+  const burger = $('.burger');
+  const nav = $('#primary-nav');
+
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+  });
+
+  nav.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      nav.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Открыть меню');
+    }
+  });
+
+  const navLinks = $$('#primary-nav a[href^="#"]');
+  const sections = navLinks
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  if ('IntersectionObserver' in window && sections.length) {
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + entry.target.id));
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    sections.forEach(s => navObserver.observe(s));
+  }
+
+  /* ======================================================================
+     1.1. ПЛАВНЫЙ СКРОЛЛ ПО ЯКОРЯМ
+     ====================================================================== */
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    if (link.classList.contains('skip-link')) return;
+    if (link.hasAttribute('data-legal')) return;
+    if (link.closest('#legalOverlay')) return;
+
+    if (link.hasAttribute('data-scroll-top') || link.getAttribute('href') === '#') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: REDUCED ? 'auto' : 'smooth' });
+      if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+      return;
+    }
+
+    let target = null;
+    try { target = document.querySelector(link.getAttribute('href')); } catch (err) { return; }
+    if (!target) return;
+
+    e.preventDefault();
+    target.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
+    if (history.replaceState) history.replaceState(null, '', link.getAttribute('href'));
+  });
+
+  /* ======================================================================
+     2. ФОН СЕКЦИЙ
+     ====================================================================== */
+  const bgMap = { 'base': '#FAF6FC', 'alt': '#F2EAF8' };
+  const bgSections = $$('[data-bg]');
+
+  if ('IntersectionObserver' in window && bgSections.length && !REDUCED) {
+    const bgObserver = new IntersectionObserver((entries) => {
+      let best = null;
+      entries.forEach(e => { if (e.isIntersecting) best = e; });
+      if (!best) return;
+      const color = bgMap[best.target.dataset.bg];
+      if (color) document.body.style.setProperty('--bg', color);
+    }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
+    bgSections.forEach(s => bgObserver.observe(s));
+  } else {
+    document.body.style.setProperty('--bg', bgMap['base']);
+  }
+
+  /* ======================================================================
+     3. REVEAL
+     ====================================================================== */
+  const revealEls = $$('.reveal');
+  if ('IntersectionObserver' in window && !REDUCED) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          const delay = Math.min(i * 70, 210);
+          setTimeout(() => entry.target.classList.add('is-in'), delay);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    revealEls.forEach(el => revealObserver.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('is-in'));
+  }
+
+  /* ======================================================================
+     4. УСЛУГИ
+     ====================================================================== */
+  $$('.service-card .seg').forEach(seg => {
+    seg.addEventListener('click', (e) => {
+      const btn = e.target.closest('.seg-btn');
+      if (!btn) return;
+      const card = seg.closest('.service-card');
+      const format = btn.dataset.format;
+
+      $$('.seg-btn', seg).forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+
+      const priceEl = $('.price-val', card);
+      if (priceEl) priceEl.textContent = priceEl.dataset[format];
+
+      const bookBtn = $('[data-book]', card);
+      if (bookBtn) {
+        const base = bookBtn.dataset.book.replace(/-(online|offline)$/, '');
+        bookBtn.dataset.book = base + '-' + format;
+      }
+    });
+  });
+
+  /* ======================================================================
+     5. МИНИ-УРОКИ
+     ====================================================================== */
+  const products = readJSON('products.json');
+  const lessonGrid = $('#lessonGrid');
+
+  function lessonIcon() {
+    return '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h14v16H5z" stroke="currentColor" stroke-width="1.7"/><path d="M9 8h6M9 12h6M9 16h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+  }
+
+  if (products && lessonGrid) {
+    const cards = products.lessons.map(p => `
+      <article class="lesson-card reveal">
+        <h3>${p.title}</h3>
+        <ul class="lesson-meta">
+          <li>${lessonIcon()}<span>${p.format}</span></li>
+          <li>${lessonIcon()}<span>${p.duration}</span></li>
+        </ul>
+        <div class="lesson-price">${p.price}</div>
+        <a class="btn btn-primary" href="${p.paymentUrl}" target="_blank" rel="noopener" data-demo-pay="${p.id}">Купить</a>
+      </article>
+    `).join('');
+
+    const bundle = products.bundle ? `
+      <article class="lesson-card lesson-card--bundle reveal">
+        <span class="lesson-tag">Выгоднее на 780 ₽</span>
+        <h3>${products.bundle.title}</h3>
+        <ul class="lesson-meta">
+          <li>${lessonIcon()}<span>${products.bundle.format}</span></li>
+          <li>${lessonIcon()}<span>${products.bundle.duration}</span></li>
+        </ul>
+        <div class="lesson-price">${products.bundle.price}</div>
+        <a class="btn btn-primary" href="${products.bundle.paymentUrl}" target="_blank" rel="noopener" data-demo-pay="${products.bundle.id}">Купить пакет</a>
+      </article>
+    ` : '';
+
+    lessonGrid.innerHTML = cards + bundle;
+
+    lessonGrid.addEventListener('click', (e) => {
+      const link = e.target.closest('[data-demo-pay]');
+      if (!link) return;
+      if (link.href.includes('demo.prodamus.ru')) {
+        e.preventDefault();
+        toast('Переход к оплате');
+      }
+    });
+
+    $$('.reveal', lessonGrid).forEach(el => {
+      if (REDUCED || !('IntersectionObserver' in window)) { el.classList.add('is-in'); return; }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(en => { if (en.isIntersecting) { el.classList.add('is-in'); io.unobserve(el); } });
+      }, { threshold: 0.1 });
+      io.observe(el);
+    });
+  }
+
+  const restoreForm = $('#restoreForm');
+  if (restoreForm) {
+    restoreForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = restoreForm.email.value.trim();
+      const note = $('#restoreNote');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        note.style.color = '#D32F2F';
+        note.textContent = 'Проверьте адрес электронной почты.';
+        return;
+      }
+      note.style.color = '';
+      note.textContent = 'Если оплата найдена, ссылка на доступ отправлена на ' + email + '. Проверьте папку «Спам».';
+      restoreForm.reset();
+    });
+  }
+
+  /* ======================================================================
+     6. КОНТАКТЫ
+     ====================================================================== */
+  const contacts = readJSON('contacts.json');
+
+  const ICONS = {
+    phone: '<svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.4a12 12 0 006.1 6.1l1.4-2 4 1.5v3c0 1.1-.9 2-2 2A17 17 0 013.5 5.5c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+    mail: '<svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>'
+  };
+
+  if (contacts) {
+    const grid = $('#contactGrid');
+    if (grid) {
+      grid.innerHTML = `
+        <button type="button" class="contact-card reveal is-in" data-open-contact>
+          <span class="ico-circle">${ICONS.phone}</span>
+          <span class="txt"><span class="k">Телефон</span><span class="v">телефон</span></span>
+        </button>
+        <button type="button" class="contact-card reveal is-in" data-open-contact>
+          <span class="ico-circle">${ICONS.mail}</span>
+          <span class="txt"><span class="k">Email</span><span class="v">e-mail</span></span>
+        </button>
+      `;
+    }
+  }
+
+  /* ======================================================================
+     7. ДЕМО-КАЛЕНДАРЬ
+     ----------------------------------------------------------------------
+     DEMO CALENDAR. Заменить на интеграцию с Яндекс.Календарём
+     (backlog #CAL-01) до публикации реальных слотов.
+     ====================================================================== */
+  const SERVICES = [
+    { id: 'primary-online',     label: 'Первичная консультация, 30 мин — онлайн',        dur: 30 },
+    { id: 'primary-offline',    label: 'Первичная консультация, 30 мин — очно',          dur: 30 },
+    { id: 'individual-online',  label: 'Индивидуальная консультация, 50 мин — онлайн',   dur: 50 },
+    { id: 'individual-offline', label: 'Индивидуальная консультация, 50 мин — очно',     dur: 50 },
+    { id: 'couple-online',      label: 'Парная консультация, 80 мин — онлайн',           dur: 80 },
+    { id: 'couple-offline',     label: 'Парная консультация, 80 мин — очно',             dur: 80 }
+  ];
+
+  const bookingState = { serviceId: 'individual-online', dateKey: null, time: null };
+
+  const serviceSelect = $('#booking-service');
+  const monthsBox = $('#booking-months');
+  const slotsBox = $('#booking-slots');
+  const summaryEl = $('#booking-summary');
+  const bookingForm = $('#booking-form');
+  const bookingSubmit = $('#booking-submit');
+  const bookingConfirm = $('#booking-confirm');
+
+  function hashStr(str) {
+    let h = 2166136261;
+    for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return h >>> 0;
+  }
+  function dateKeyOf(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function keyToDate(k) { const [y, m, d] = k.split('-').map(Number); return new Date(y, m - 1, d); }
+  function minutesToTime(m) { return pad(Math.floor(m / 60)) + ':' + pad(m % 60); }
+
+  function currentService() {
+    return SERVICES.find(s => s.id === bookingState.serviceId) || SERVICES[2];
+  }
+
+  function slotsFor(date, dur) {
+    const day = date.getDay();
+    if (day === 0) return [];
+    const open = day === 6 ? 11 * 60 : 10 * 60;
+    const close = day === 6 ? 16 * 60 : 20 * 60;
+    const step = dur + 15;
+    const now = new Date();
+    const isToday = dateKeyOf(date) === dateKeyOf(now);
+    const nowMin = now.getHours() * 60 + now.getMinutes();
+    const key = dateKeyOf(date);
+    const out = [];
+    for (let t = open; t + dur <= close; t += step) {
+      if (isToday && t < nowMin + 120) continue;
+      if (hashStr(key + ':' + t) % 100 < 34) continue;
+      out.push(t);
+    }
+    return out;
+  }
+
+  function renderCalendar() {
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const dur = currentService().dur;
+    const months = [
+      new Date(today.getFullYear(), today.getMonth(), 1),
+      new Date(today.getFullYear(), today.getMonth() + 1, 1)
+    ];
+    const monthName = (d) => new Intl.DateTimeFormat('ru-RU', { month: 'long', year: 'numeric' }).format(d);
+    const dowNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+
+    monthsBox.innerHTML = months.map(first => {
+      const year = first.getFullYear();
+      const month = first.getMonth();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const offset = (first.getDay() + 6) % 7;
+      let cells = '';
+      for (let i = 0; i < offset; i++) cells += '<span class="cal-day is-empty" aria-hidden="true"></span>';
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const date = new Date(year, month, d);
+        const key = dateKeyOf(date);
+        const isPast = date < today;
+        const slots = isPast ? [] : slotsFor(date, dur);
+        const disabled = isPast || slots.length === 0;
+        const isToday = key === dateKeyOf(new Date());
+        const isSelected = key === bookingState.dateKey;
+        const aria = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long', weekday: 'long' }).format(date);
+        cells += `<button type="button" class="cal-day${isToday ? ' is-today' : ''}${isSelected ? ' is-selected' : ''}" data-date="${key}" ${disabled ? 'disabled' : ''} aria-label="${aria}" aria-pressed="${isSelected}">${d}</button>`;
+      }
+
+      return `<div class="month">
+        <div class="month-head">${monthName(first)}</div>
+        <div class="cal-grid" role="grid">
+          ${dowNames.map(n => `<span class="cal-dow" role="columnheader">${n}</span>`).join('')}
+          ${cells}
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function renderSlots() {
+    if (!bookingState.dateKey) {
+      slotsBox.innerHTML = '<p class="slots-empty">Сначала выберите дату в календаре.</p>';
+      return;
+    }
+    const date = keyToDate(bookingState.dateKey);
+    const slots = slotsFor(date, currentService().dur);
+    if (!slots.length) {
+      slotsBox.innerHTML = '<p class="slots-empty">На этот день свободных окон нет. Выберите другую дату.</p>';
+      return;
+    }
+    slotsBox.innerHTML = slots.map(t => `
+      <button type="button" class="slot${bookingState.time === t ? ' is-selected' : ''}" data-time="${t}" aria-pressed="${bookingState.time === t}">${minutesToTime(t)}</button>
+    `).join('');
+  }
+
+  function renderSummary() {
+    const svc = currentService();
+    if (!bookingState.dateKey) {
+      summaryEl.innerHTML = `<strong>${svc.label}</strong><br>дата и время не выбраны`;
+      return;
+    }
+    const date = keyToDate(bookingState.dateKey);
+    const dateText = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long', weekday: 'short' }).format(date);
+    summaryEl.innerHTML = `<strong>${svc.label}</strong><br>${dateText}${bookingState.time !== null ? ', ' + minutesToTime(bookingState.time) : ', время не выбрано'}`;
+  }
+
+  function validateBooking() {
+    const name = $('#booking-name').value.trim();
+    const digits = $('#booking-phone').value.replace(/\D/g, '');
+    const consent = $('#booking-consent').checked;
+    const ok = name.length >= 2 && digits.length === 11 && consent && bookingState.dateKey !== null && bookingState.time !== null;
+    bookingSubmit.disabled = !ok;
+    return ok;
+  }
+
+  if (serviceSelect) {
+    serviceSelect.innerHTML = SERVICES.map(s =>
+      `<option value="${s.id}"${s.id === bookingState.serviceId ? ' selected' : ''}>${s.label}</option>`
+    ).join('');
+    serviceSelect.addEventListener('change', () => {
+      bookingState.serviceId = serviceSelect.value;
+      bookingState.time = null;
+      renderCalendar(); renderSlots(); renderSummary(); validateBooking();
+    });
+  }
+
+  if (monthsBox) {
+    monthsBox.addEventListener('click', (e) => {
+      const btn = e.target.closest('.cal-day');
+      if (!btn || btn.disabled) return;
+      bookingState.dateKey = btn.dataset.date;
+      bookingState.time = null;
+      renderCalendar(); renderSlots(); renderSummary(); validateBooking();
+    });
+  }
+
+  if (slotsBox) {
+    slotsBox.addEventListener('click', (e) => {
+      const btn = e.target.closest('.slot');
+      if (!btn) return;
+      bookingState.time = Number(btn.dataset.time);
+      renderSlots(); renderSummary(); validateBooking();
+    });
+  }
+
+  function applyPhoneMask(input) {
+    input.addEventListener('input', () => {
+      let d = input.value.replace(/\D/g, '');
+      if (d.startsWith('8')) d = '7' + d.slice(1);
+      if (!d.startsWith('7')) d = '7' + d;
+      d = d.slice(0, 11);
+      let out = '+7';
+      if (d.length > 1) out += ' (' + d.slice(1, 4);
+      if (d.length >= 5) out += ') ' + d.slice(4, 7);
+      if (d.length >= 8) out += '-' + d.slice(7, 9);
+      if (d.length >= 10) out += '-' + d.slice(9, 11);
+      input.value = out;
+    });
+    input.addEventListener('focus', () => { if (!input.value) input.value = '+7 ('; });
+    input.addEventListener('blur', () => { if (input.value.replace(/\D/g, '').length <= 1) input.value = ''; });
+  }
+
+  const bookingPhone = $('#booking-phone');
+  if (bookingPhone) applyPhoneMask(bookingPhone);
+
+  if (bookingForm) {
+    ['#booking-name', '#booking-phone', '#booking-consent'].forEach(sel => {
+      const el = $(sel);
+      if (el) el.addEventListener('input', validateBooking);
+      if (el) el.addEventListener('change', validateBooking);
+    });
+
+    bookingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!validateBooking()) return;
+      const hp = bookingForm.querySelector('.honeypot');
+      if (hp && hp.value) return;
+
+      const svc = currentService();
+      const date = keyToDate(bookingState.dateKey);
+      const dateText = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long' }).format(date);
+      const timeText = minutesToTime(bookingState.time);
+
+      const record = {
+        id: 'demo-' + Date.now(),
+        service: svc.label,
+        duration: svc.dur,
+        date: bookingState.dateKey,
+        time: timeText,
+        name: $('#booking-name').value.trim(),
+        phone: $('#booking-phone').value,
+        consent: { granted: true, at: new Date().toISOString(), textVersion: 'consent-v1.0-2026-01', ip: '—' },
+        demo: true
+      };
+      try {
+        const key = 'vp_demo_bookings';
+        const list = JSON.parse(localStorage.getItem(key) || '[]');
+        list.push(record);
+        localStorage.setItem(key, JSON.stringify(list));
+      } catch (err) {}
+
+      $('#booking-confirm-text').textContent = 'Вы записаны на ' + dateText + ', ' + timeText + '. ' + svc.label + '.';
+      bookingForm.hidden = true;
+      bookingConfirm.hidden = false;
+    });
+
+    const resetBtn = $('#booking-reset');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        bookingConfirm.hidden = true;
+        bookingForm.hidden = false;
+        bookingForm.reset();
+        bookingState.time = null;
+        renderSlots(); renderSummary(); validateBooking();
+      });
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-book]');
+    if (!btn) return;
+    const id = btn.dataset.book;
+    if (SERVICES.some(s => s.id === id)) {
+      bookingState.serviceId = id;
+      bookingState.time = null;
+      if (serviceSelect) serviceSelect.value = id;
+      renderCalendar(); renderSlots(); renderSummary(); validateBooking();
+    }
+  });
+
+  renderCalendar(); renderSlots(); renderSummary(); validateBooking();
+
+  /* ======================================================================
+     8. МОДАЛЬНЫЕ ОКНА
+     ====================================================================== */
+  let lastFocused = null;
+
+  function openModal(modal) {
+    lastFocused = document.activeElement;
+    modal.classList.add('is-open');
+    document.body.classList.add('no-scroll');
+    const focusable = modal.querySelector('input, button, select, [href]');
+    if (focusable) setTimeout(() => focusable.focus(), 60);
+  }
+  function closeModal(modal) {
+    modal.classList.remove('is-open');
+    if (!document.querySelector('.modal.is-open') && !$('#legalOverlay').classList.contains('is-open')) {
+      document.body.classList.remove('no-scroll');
+    }
+    if (lastFocused) lastFocused.focus();
+  }
+
+  $$('[data-close-modal]').forEach(btn => {
+    btn.addEventListener('click', () => closeModal(btn.closest('.modal')));
+  });
+  $$('.modal').forEach(modal => {
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(modal); });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const openMod = document.querySelector('.modal.is-open');
+    if (openMod) closeModal(openMod);
+    if ($('#legalOverlay').classList.contains('is-open')) closeLegal();
+  });
+
+  /* ======================================================================
+     9. ФОРМА ЗАЯВКИ
+     ====================================================================== */
+  const leadModal = $('#leadModal');
+  const leadForm = $('#leadForm');
+  const leadSubmit = $('#lead-submit');
+  const leadPhone = $('#lead-phone');
+
+  if (leadPhone) applyPhoneMask(leadPhone);
+
+  $$('[data-open-lead]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $('#leadFormWrap').hidden = false;
+      $('#leadSuccess').hidden = true;
+      openModal(leadModal);
+    });
+  });
+
+  const leadEmailField = $('#lead-email-field');
+  $$('input[name="contact"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      leadEmailField.hidden = radio.value !== 'email' || !radio.checked;
+      validateLead();
+    });
+  });
+
+  function validateLead() {
+    const name = $('#lead-name').value.trim();
+    const digits = $('#lead-phone').value.replace(/\D/g, '');
+    const consent = $('#lead-consent').checked;
+    const needsEmail = document.querySelector('input[name="contact"]:checked')?.value === 'email';
+    const emailOk = !needsEmail || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($('#lead-email').value.trim());
+    const ok = name.length >= 2 && digits.length === 11 && consent && emailOk;
+    leadSubmit.disabled = !ok;
+    return ok;
+  }
+  function leadError(msg) {
+    const el = $('#lead-error');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  if (leadForm) {
+    ['#lead-name', '#lead-phone', '#lead-consent', '#lead-email'].forEach(sel => {
+      const el = $(sel);
+      if (!el) return;
+      el.addEventListener('input', validateLead);
+      el.addEventListener('change', validateLead);
+    });
+
+    leadForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!validateLead()) return;
+      const hp = leadForm.querySelector('.honeypot');
+      if (hp && hp.value) return;
+      const last = Number(localStorage.getItem('vp_lead_last') || 0);
+      if (Date.now() - last < 60000) {
+        leadError('Пожалуйста, подождите минуту перед повторной отправкой.');
+        return;
+      }
+      try {
+        localStorage.setItem('vp_consent_log', JSON.stringify({ at: new Date().toISOString(), textVersion: 'consent-v1.0-2026-01', ip: '—', page: location.pathname }));
+        localStorage.setItem('vp_lead_last', String(Date.now()));
+      } catch (err) {}
+
+      $('#leadFormWrap').hidden = true;
+      $('#leadSuccess').hidden = false;
+      leadForm.reset();
+      leadEmailField.hidden = true;
+      leadSubmit.disabled = true;
+    });
+  }
+
+  /* ======================================================================
+     10. КОНТАКТНАЯ МОДАЛКА
+     ====================================================================== */
+  const contactModal = $('#contactModal');
+  const contactChooser = $('#contactChooser');
+  const contactField = $('#contactField');
+
+  function resetContactModal() {
+    contactChooser.hidden = false;
+    contactField.hidden = true;
+    contactField.innerHTML = '';
+  }
+
+  function openContactModal() {
+    resetContactModal();
+    openModal(contactModal);
+  }
+
+  $$('[data-open-contact]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openContactModal();
+    });
+  });
+
+  function renderContactField(type) {
+    if (!contactField) return;
+    contactField.hidden = false;
+
+    if (type === 'call') {
+      contactField.innerHTML = `
+        <div class="field">
+          <label for="contact-call-phone">Ваш телефон</label>
+          <input class="input" id="contact-call-phone" type="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel">
+        </div>
+        <label class="checkbox" for="contact-call-consent" style="margin-bottom:16px">
+          <input type="checkbox" id="contact-call-consent">
+          <span>Даю согласие на обработку персональных данных и принимаю условия <a href="#legal-consent" data-legal="consent">соглашения</a>.</span>
+        </label>
+        <button class="btn btn-primary btn-block" type="button" data-contact-submit="call" disabled>Жду звонка</button>
+      `;
+      applyPhoneMask($('#contact-call-phone'));
+      bindContactSubmitValidation('call');
+    } else if (type === 'email') {
+      contactField.innerHTML = `
+        <div class="field">
+          <label for="contact-email-input">Ваш e-mail</label>
+          <input class="input" id="contact-email-input" type="email" autocomplete="email">
+        </div>
+        <label class="checkbox" for="contact-email-consent" style="margin-bottom:16px">
+          <input type="checkbox" id="contact-email-consent">
+          <span>Даю согласие на обработку персональных данных и принимаю условия <a href="#legal-consent" data-legal="consent">соглашения</a>.</span>
+        </label>
+        <button class="btn btn-primary btn-block" type="button" data-contact-submit="email" disabled>Отправить</button>
+      `;
+      bindContactSubmitValidation('email');
+    } else {
+      const social = contacts && contacts.social.find(s => s.id === type);
+      if (social && social.url) {
+        contactField.innerHTML = `
+          <a class="btn btn-primary btn-block" href="${social.url}" target="_blank" rel="noopener">Открыть ${social.label}</a>
+          <button type="button" class="quiz-back" data-contact-back style="display:block;margin:14px auto 0">Выбрать другой способ</button>
+        `;
+      } else {
+        contactField.innerHTML = `
+          <p class="note" style="margin:8px 0 20px">Этот канал пока недоступен. Выберите звонок или e-mail.</p>
+          <button type="button" class="btn btn-secondary btn-block" data-contact-back>Выбрать другой способ</button>
+        `;
+      }
+    }
+  }
+
+  function bindContactSubmitValidation(type) {
+    const submitBtn = contactField.querySelector('[data-contact-submit]');
+    if (!submitBtn) return;
+
+    const inputs = contactField.querySelectorAll('input');
+    const consentBox = contactField.querySelector('.checkbox input');
+    const inputField = contactField.querySelector('.input');
+
+    function validate() {
+      let valid = true;
+      if (type === 'call') {
+        const digits = (inputField?.value || '').replace(/\D/g, '');
+        valid = digits.length === 11;
+      } else if (type === 'email') {
+        valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((inputField?.value || '').trim());
+      }
+      valid = valid && consentBox && consentBox.checked;
+      submitBtn.disabled = !valid;
+    }
+
+    inputs.forEach(inp => {
+      inp.addEventListener('input', validate);
+      inp.addEventListener('change', validate);
+    });
+    validate();
+  }
+
+  document.addEventListener('click', (e) => {
+    const opt = e.target.closest('[data-contact]');
+    if (opt) {
+      contactChooser.hidden = true;
+      renderContactField(opt.dataset.contact);
+      return;
+    }
+
+    if (e.target.closest('[data-contact-back]')) {
+      resetContactModal();
+      return;
+    }
+
+    const submitBtn = e.target.closest('[data-contact-submit]');
+    if (submitBtn) {
+      const type = submitBtn.dataset.contactSubmit;
+      const payload = { type: type, at: new Date().toISOString() };
+
+      if (type === 'call') {
+        payload.phone = $('#contact-call-phone')?.value || '';
+      } else if (type === 'email') {
+        payload.email = $('#contact-email-input')?.value.trim() || '';
+      }
+
+      try {
+        const list = JSON.parse(localStorage.getItem('vp_contact_requests') || '[]');
+        list.push(payload);
+        localStorage.setItem('vp_contact_requests', JSON.stringify(list));
+      } catch (err) {}
+
+      contactField.innerHTML = `
+        <div class="form-success">
+          <div class="ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Спасибо, свяжусь с вами в течение рабочего дня</h3>
+          <p class="note">Заявка получена. Если вопрос срочный — выберите другой способ связи.</p>
+          <button type="button" class="btn btn-secondary btn-sm" data-close-modal style="margin-top:18px">Закрыть</button>
+        </div>
+      `;
+      contactField.querySelector('[data-close-modal]')?.addEventListener('click', () => closeModal(contactModal));
+    }
+  });
+
+  /* ======================================================================
+     11. МИНИ-КВИЗ
+     ====================================================================== */
+  const quizModal = $('#quizModal');
+  const quizAnswers = { q1: null, q2: null };
+
+  const QUIZ_MAP = {
+    anxiety:   { id: 'individual', name: 'Индивидуальная консультация, 50 мин', text: 'Тревога и перегрузка хорошо разбираются в индивидуальном формате: сначала проясняем триггеры, затем подбираем техники саморегуляции.' },
+    relations: { id: 'individual', name: 'Индивидуальная консультация, 50 мин', text: 'С отношениями и границами чаще всего работаем индивидуально: разбираем установки, учимся говорить о своих потребностях.' },
+    self:      { id: 'individual', name: 'Индивидуальная консультация, 50 мин', text: 'Самооценка — частая тема индивидуальных встреч. Идём в вашем темпе, без оценок и «надо».' },
+    change:    { id: 'individual', name: 'Индивидуальная консультация, 50 мин', text: 'В периоды перемен помогают структура и опора. Разложим приоритеты и составим понятный план.' },
+    unknown:   { id: 'primary',    name: 'Первичная консультация, 30 мин',      text: 'Если не знаете, с чего начать — начнём с короткой встречи: проясним запрос и решим, какой формат вам подходит.' }
+  };
+
+  function showQuizStep(n) {
+    $$('.quiz-step', quizModal).forEach(s => s.classList.toggle('is-active', Number(s.dataset.step) === n));
+    $$('.quiz-progress i', quizModal).forEach((bar, i) => bar.classList.toggle('is-done', i < n));
+  }
+
+  $$('[data-open-quiz]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      quizAnswers.q1 = null; quizAnswers.q2 = null;
+      showQuizStep(1);
+      openModal(quizModal);
+    });
+  });
+
+  quizModal.addEventListener('click', (e) => {
+    const opt1 = e.target.closest('[data-q1]');
+    if (opt1) { quizAnswers.q1 = opt1.dataset.q1; showQuizStep(2); return; }
+    const opt2 = e.target.closest('[data-q2]');
+    if (opt2) {
+      quizAnswers.q2 = opt2.dataset.q2;
+      const rec = QUIZ_MAP[quizAnswers.q1] || QUIZ_MAP.unknown;
+      const format = quizAnswers.q2 === 'offline' ? 'очно' : 'онлайн';
+      $('#quizServiceName').textContent = rec.name;
+      $('#quizServiceText').textContent = rec.text + ' Формат: ' + format + '.';
+      $('#quizBook').dataset.target = rec.id + '-' + (quizAnswers.q2 === 'offline' ? 'offline' : 'online');
+      showQuizStep(3);
+      return;
+    }
+    if (e.target.closest('[data-quiz-back]')) { showQuizStep(1); return; }
+    if (e.target.closest('[data-quiz-restart]')) {
+      quizAnswers.q1 = null; quizAnswers.q2 = null;
+      showQuizStep(1);
+    }
+  });
+
+  $('#quizBook').addEventListener('click', (e) => {
+    const target = e.currentTarget.dataset.target;
+    closeModal(quizModal);
+    setTimeout(() => {
+      const btn = document.querySelector('[data-book="' + target + '"]');
+      if (btn) btn.click();
+      $('#booking').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
+    }, 220);
+  });
+
+  /* ======================================================================
+     12. КАРУСЕЛИ
+     ====================================================================== */
+  function setupCarousel(trackSel, prevSel, nextSel, itemSel) {
+    const track = $(trackSel);
+    if (!track) return;
+    const prevBtn = $(prevSel);
+    const nextBtn = $(nextSel);
+    if (!prevBtn || !nextBtn) return;
+
+    function step() {
+      const card = track.querySelector(itemSel);
+      if (!card) return 300;
+      const gap = parseFloat(getComputedStyle(track).columnGap || 16) || 16;
+      return card.getBoundingClientRect().width + gap;
+    }
+    function update() {
+      const maxScroll = track.scrollWidth - track.clientWidth - 2;
+      prevBtn.disabled = track.scrollLeft <= 2;
+      nextBtn.disabled = track.scrollLeft >= maxScroll;
+    }
+    prevBtn.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: REDUCED ? 'auto' : 'smooth' }));
+    nextBtn.addEventListener('click', () => track.scrollBy({ left: step(), behavior: REDUCED ? 'auto' : 'smooth' }));
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); nextBtn.click(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); prevBtn.click(); }
+    });
+  }
+
+  setupCarousel('#reviewsTrack', '[data-prev]', '[data-next]', '.review');
+  setupCarousel('#casesTrack', '[data-cases-prev]', '[data-cases-next]', '.case-card');
+
+  /* ======================================================================
+     13. ИИ-КОНСУЛЬТАНТ «МАРИЯ»
+     ====================================================================== */
+  const mariaPanel = $('#mariaPanel');
+  const mariaBubble = $('#mariaBubble');
+  const mariaBody = $('#mariaBody');
+  const mariaQuick = $('#mariaQuick');
+
+  const GREETING = 'Здравствуйте. Я Мария, помощник Виктории. Помогу сориентироваться на сайте. Чем могу помочь?';
+
+  function mariaSay(text, who) {
+    const div = document.createElement('div');
+    div.className = 'msg msg--' + (who || 'bot');
+    div.innerHTML = text;
+    mariaBody.appendChild(div);
+    mariaBody.scrollTop = mariaBody.scrollHeight;
+  }
+  function mariaOpen() {
+    mariaPanel.classList.add('is-open');
+    mariaBubble.classList.add('is-hidden');
+    if (!mariaBody.children.length) mariaSay(GREETING);
+    try { localStorage.setItem('vp_maria_opened', '1'); } catch (e) {}
+  }
+  function mariaCollapse() {
+    mariaPanel.classList.remove('is-open');
+    mariaBubble.classList.remove('is-hidden');
+    mariaBubble.querySelector('.ping').style.display = 'none';
+    try { localStorage.setItem('vp_maria_closed', '1'); } catch (e) {}
+  }
+
+  mariaBubble.addEventListener('click', mariaOpen);
+  $('#mariaClose').addEventListener('click', mariaCollapse);
+
+  let mariaShown = false;
+  try { mariaShown = localStorage.getItem('vp_maria_shown') === '1'; } catch (e) {}
+
+  if (!mariaShown) {
+    setTimeout(() => {
+      mariaOpen();
+      mariaBubble.querySelector('.ping').style.display = 'none';
+      try { localStorage.setItem('vp_maria_shown', '1'); } catch (e) {}
+      setTimeout(() => {
+        if (mariaPanel.classList.contains('is-open') && mariaBody.children.length <= 1) mariaCollapse();
+      }, 14000);
+    }, 10000);
+  }
+
+  if (window.matchMedia('(max-width: 767px)').matches) {
+    window.addEventListener('scroll', () => {
+      if (mariaPanel.classList.contains('is-open') && window.scrollY > 260) mariaCollapse();
+    }, { passive: true, once: true });
+  }
+
+  const MARIA_ACTIONS = {
+    cases:    { text: 'Кейсы — в разделе «Кейсы». Там пять историй: тревога, границы, перемены, выгорание, конфликты.', scroll: '#cases' },
+    booking:  { text: 'Записаться можно в разделе «Онлайн-запись»: выберите услугу, дату и время.', scroll: '#booking' },
+    services: { text: 'Услуги и цены — в разделе «Услуги»: первичная 30 мин, индивидуальная 50 мин, парная 80 мин.', scroll: '#services' },
+    lessons:  { text: 'Мини-уроки — в разделе «Мини-уроки». Три урока и пакет со скидкой.', scroll: '#lessons' },
+    contacts: { text: 'Открываю варианты связи.', action: 'contacts' },
+    slots:    { text: 'Свободные окна — в демонстрационном календаре. Покажу раздел «Онлайн-запись».', scroll: '#booking' },
+    quiz:     { text: 'Открываю подбор услуги под ваш запрос.', action: 'quiz' }
+  };
+
+  mariaQuick.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-maria]');
+    if (!btn) return;
+    const act = MARIA_ACTIONS[btn.dataset.maria];
+    if (!act) return;
+
+    mariaSay(btn.textContent.trim(), 'user');
+    setTimeout(() => {
+      mariaSay(act.text);
+      if (act.action === 'quiz') {
+        setTimeout(() => {
+          mariaCollapse();
+          quizAnswers.q1 = null; quizAnswers.q2 = null;
+          showQuizStep(1);
+          openModal(quizModal);
+        }, 500);
+      } else if (act.action === 'contacts') {
+        setTimeout(() => {
+          mariaCollapse();
+          openContactModal();
+        }, 500);
+      } else if (act.scroll) {
+        setTimeout(() => {
+          mariaCollapse();
+          const el = document.querySelector(act.scroll);
+          if (el) el.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
+        }, 700);
+      }
+    }, 320);
+  });
+
+  $('#mariaForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = $('#mariaInput');
+    const q = input.value.trim();
+    if (!q) return;
+    mariaSay(q.replace(/[<>]/g, ''), 'user');
+    input.value = '';
+
+    const lower = q.toLowerCase();
+    let reply = null;
+    if (/запис|слот|окн|время|календар/.test(lower)) reply = MARIA_ACTIONS.booking.text;
+    else if (/цен|стоим|услуг|скольк|прайс/.test(lower)) reply = MARIA_ACTIONS.services.text;
+    else if (/кейс|истор|пример/.test(lower)) reply = MARIA_ACTIONS.cases.text;
+    else if (/урок|курс|купить|оплат/.test(lower)) reply = MARIA_ACTIONS.lessons.text;
+    else if (/связ|телефон|почт|email|написать|позвон/.test(lower)) reply = MARIA_ACTIONS.contacts.text;
+    else if (/подобр|помог|не знаю|запрос/.test(lower)) reply = MARIA_ACTIONS.quiz.text;
+
+    setTimeout(() => {
+      if (reply) mariaSay(reply);
+      else mariaSay('Это лучше обсудить с Викторией — <a href="#" data-maria-to-contacts>открыть способы связи</a>.');
+    }, 380);
+  });
+
+  mariaBody.addEventListener('click', (e) => {
+    if (e.target.matches('[data-maria-to-contacts]')) {
+      e.preventDefault();
+      mariaCollapse();
+      openContactModal();
+    }
+  });
+
+  /* ======================================================================
+     14. COOKIE
+     ====================================================================== */
+  const cookieBar = $('#cookieBar');
+  let cookieAccepted = false;
+  try { cookieAccepted = sessionStorage.getItem('vp_cookie_accepted') === '1'; } catch (e) {}
+
+  if (!cookieAccepted) {
+    setTimeout(() => {
+      cookieBar.classList.add('is-open');
+      document.body.classList.add('has-cookie');
+    }, 900);
+  }
+
+  $('#cookieAccept').addEventListener('click', () => {
+    cookieBar.classList.remove('is-open');
+    document.body.classList.remove('has-cookie');
+    try { sessionStorage.setItem('vp_cookie_accepted', '1'); } catch (e) {}
+  });
+
+  /* ======================================================================
+     15. ЮРИДИЧЕСКИЕ ДОКУМЕНТЫ
+     ====================================================================== */
+  const LEGAL = {
+    privacy: {
+      title: 'Политика обработки персональных данных',
+      html: `
+        <h1>Политика обработки персональных данных</h1>
+        <p class="upd">Редакция от 01.01.2026</p>
+        <h2>1. Оператор</h2>
+        <p>ИП Протасова Виктория Павловна, ОГРНИП 316631500164163 (далее — Оператор). Контактный email: spika777@yandex.ru.</p>
+        <h2>2. Какие данные обрабатываются</h2>
+        <ul>
+          <li>имя, указанное в форме заявки;</li>
+          <li>номер телефона и (или) адрес электронной почты;</li>
+          <li>сведения, которые вы добровольно сообщаете в обращении;</li>
+          <li>технические данные: IP-адрес, cookie, сведения о браузере и устройстве.</li>
+        </ul>
+        <h2>3. Цели обработки</h2>
+        <ul>
+          <li>связь по заявке и согласование условий консультации;</li>
+          <li>исполнение договора на оказание консультационных услуг и продажу цифровых продуктов;</li>
+          <li>предоставление доступа к оплаченным материалам;</li>
+          <li>улучшение работы сайта и анализ обезличенной статистики.</li>
+        </ul>
+        <h2>4. Правовые основания</h2>
+        <p>Согласие субъекта персональных данных, а также необходимость исполнения договора, стороной которого является субъект.</p>
+        <h2>5. Сроки и условия хранения</h2>
+        <p>Данные хранятся не дольше, чем требуется для целей обработки, и удаляются по достижении целей либо при отзыве согласия. Серверы размещены на территории Российской Федерации.</p>
+        <h2>6. Передача третьим лицам</h2>
+        <p>Данные не продаются и не передаются третьим лицам, за исключением случаев, прямо предусмотренных законодательством, а также платёжного сервиса Prodamus в объёме, необходимом для проведения оплаты и фискализации.</p>
+        <h2>7. Права субъекта</h2>
+        <p>Вы вправе запросить сведения об обработке, потребовать уточнения, блокирования или удаления данных, а также отозвать согласие, направив обращение на spika777@yandex.ru.</p>
+        <h2>8. Cookie</h2>
+        <p>Сайт использует файлы cookie для корректной работы интерфейса и аналитики. Подробнее — в уведомлении об использовании cookie.</p>
+        <h2>9. Изменения</h2>
+        <p>Оператор вправе изменять настоящую Политику. Актуальная редакция всегда доступна на этой странице.</p>
+        <p style="margin-top:28px;font-size:13px;color:rgba(46,26,46,.45)">Шаблон документа. Перед публикацией требуется юридическая проверка.</p>
+      `
+    },
+    consent: {
+      title: 'Согласие на обработку персональных данных',
+      html: `
+        <h1>Согласие на обработку персональных данных</h1>
+        <p class="upd">Версия текста: consent-v1.0-2026-01</p>
+        <p>Нажимая на кнопку отправки формы, я, субъект персональных данных, свободно, своей волей и в своём интересе даю согласие ИП Протасова Виктория Павловна (ОГРНИП 316631500164163) на обработку моих персональных данных.</p>
+        <h2>Перечень данных</h2>
+        <ul>
+          <li>фамилия, имя (в объёме, который я указал);</li>
+          <li>номер телефона;</li>
+          <li>адрес электронной почты;</li>
+          <li>содержание моего обращения.</li>
+        </ul>
+        <h2>Перечень действий</h2>
+        <p>Сбор, запись, систематизация, накопление, хранение, уточнение, извлечение, использование, передача (в случаях, предусмотренных законом), блокирование, удаление, уничтожение.</p>
+        <h2>Цель</h2>
+        <p>Связь со мной по заявке, согласование и оказание консультационных услуг, предоставление доступа к цифровым продуктам.</p>
+        <h2>Срок действия и отзыв</h2>
+        <p>Согласие действует до достижения целей обработки либо до его отзыва. Отзыв направляется на spika777@yandex.ru в свободной форме.</p>
+        <p style="margin-top:28px;font-size:13px;color:rgba(46,26,46,.45)">Факт согласия фиксируется с указанием даты, времени, IP-адреса и версии текста согласия.</p>
+      `
+    },
+    offer: {
+      title: 'Публичная оферта',
+      html: `
+        <h1>Публичная оферта</h1>
+        <p class="upd">Редакция от 01.01.2026</p>
+        <h2>1. Общие положения</h2>
+        <p>Настоящий документ является публичной офертой ИП Протасова Виктория Павловна (ОГРНИП 316631500164163) и определяет условия оказания консультационных услуг и продажи цифровых продуктов.</p>
+        <h2>2. Предмет</h2>
+        <p>Исполнитель оказывает консультационные услуги в формате онлайн и очно, а также предоставляет доступ к цифровым продуктам (мини-урокам). Акцептом оферты является оплата или подтверждение записи.</p>
+        <h2>3. Стоимость и оплата</h2>
+        <p>Стоимость услуг указана на сайте. Оплата цифровых продуктов проводится через платёжный сервис Prodamus, который выполняет фискализацию.</p>
+        <h2>4. Порядок оказания услуг</h2>
+        <p>Дата и время консультации согласуются сторонами. Перенос возможен не позднее чем за 24 часа до назначенного времени.</p>
+        <h2>5. Доступ к цифровым продуктам</h2>
+        <p>Ссылка доступа направляется на email в течение нескольких минут после успешной оплаты и действует 12 месяцев.</p>
+        <h2>6. Возврат</h2>
+        <p>Возврат средств за цифровой продукт возможен при отсутствии фактического использования материалов. Заявка направляется на spika777@yandex.ru.</p>
+        <h2>7. Ограничение ответственности</h2>
+        <p>Консультации не являются медицинской услугой и не заменяют помощь врача. Результат зависит от совместной работы сторон; гарантии конкретного результата не предоставляются.</p>
+        <h2>8. Реквизиты</h2>
+        <p>ИП Протасова Виктория Павловна, ОГРНИП 316631500164163, spika777@yandex.ru, +7-917-616-9999.</p>
+        <p style="margin-top:28px;font-size:13px;color:rgba(46,26,46,.45)">Шаблон документа. Перед публикацией требуется юридическая проверка.</p>
+      `
+    },
+    cookie: {
+      title: 'Уведомление об использовании cookie',
+      html: `
+        <h1>Уведомление об использовании файлов cookie</h1>
+        <p class="upd">Редакция от 01.01.2026</p>
+        <h2>Что такое cookie</h2>
+        <p>Cookie — небольшие текстовые файлы, которые сохраняются в браузере при посещении сайта. Они помогают сайту корректно работать и запоминать ваши предпочтения.</p>
+        <h2>Какие cookie используются</h2>
+        <ul>
+          <li><strong>Технические</strong> — обеспечивают работу интерфейса, форм и демонстрационного календаря.</li>
+          <li><strong>Аналитические</strong> — Яндекс.Метрика, обезличенная статистика посещений.</li>
+        </ul>
+        <h2>Управление cookie</h2>
+        <p>Вы можете отключить cookie в настройках браузера. Часть функций сайта при этом может работать некорректно.</p>
+        <h2>Согласие</h2>
+        <p>Продолжая пользоваться сайтом и нажимая кнопку «Принять» в уведомлении, вы соглашаетесь с использованием cookie на условиях настоящего уведомления.</p>
+      `
+    },
+    thanks: {
+      title: 'Спасибо',
+      html: `
+        <h1>Спасибо за покупку</h1>
+        <p class="upd">Доступ придёт на email в течение нескольких минут.</p>
+        <p>Если письмо не пришло в течение 15 минут, проверьте папку «Спам» или воспользуйтесь формой «Восстановить доступ» в разделе «Мини-уроки».</p>
+        <p>Вопросы по оплате и доступу: <a href="mailto:spika777@yandex.ru">spika777@yandex.ru</a>.</p>
+      `
+    }
+  };
+
+  const legalOverlay = $('#legalOverlay');
+
+  function openLegal(key) {
+    const doc = LEGAL[key];
+    if (!doc) return;
+    $('#legalTitle').textContent = doc.title;
+    $('#legalBody').innerHTML = doc.html;
+    legalOverlay.classList.add('is-open');
+    legalOverlay.scrollTop = 0;
+    document.body.classList.add('no-scroll');
+    history.replaceState(null, '', '#legal-' + key);
+  }
+  function closeLegal() {
+    legalOverlay.classList.remove('is-open');
+    document.body.classList.remove('no-scroll');
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+  $('#legalClose').addEventListener('click', closeLegal);
+
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('[data-legal]');
+    if (!link) return;
+    e.preventDefault();
+    openLegal(link.dataset.legal);
+  });
+
+  function checkHashLegal() {
+    const m = location.hash.match(/^#legal-(\w+)$/);
+    if (m && LEGAL[m[1]]) openLegal(m[1]);
+  }
+  window.addEventListener('hashchange', () => {
+    if (/^#legal-/.test(location.hash)) checkHashLegal();
+  });
+  checkHashLegal();
+
+  if (/[?&]paid=1/.test(location.search)) {
+    setTimeout(() => openLegal('thanks'), 400);
+  }
+
+  /* ======================================================================
+     16. АНАЛИТИКА
+     ====================================================================== */
+  function reachGoal(goal) {
+    if (typeof window.ym === 'function') { /* window.ym(ID, 'reachGoal', goal); */ }
+    console.info('[analytics] goal:', goal);
+  }
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('a[href^="tel:"]')) reachGoal('phone_click');
+    if (e.target.closest('[data-demo-pay]')) reachGoal('lesson_buy_click');
+    if (e.target.closest('#lead-submit')) reachGoal('lead_submit');
+    if (e.target.closest('.maria-quick .quick-btn')) reachGoal('maria_click');
+  });
+
+  console.info('VP site version', APP_VERSION);
+})();
+</script>
+
+<!--
+  ============================================================================
+  CHANGELOG
+  ----------------------------------------------------------------------------
+  v4.0.0 — 28.10.2026 · Garnet Red + Lavender Haze
+    • Полная замена палитры: лавандовая дымка в фоне, гранатовые акценты.
+    • Подвал: тёмный гранат с лавандовыми радиальными всполохами,
+      градиентная линия сверху lavender → garnet.
+    • Кнопки: градиент с лавандовым подтоном в верхней точке.
+    • Eyebrow-линия: градиент lavender → garnet.
+    • Hero: два радиальных пятна — лаванда сверху, гранат снизу.
+    • Bundle-карточка: тёмный гранат с лавандовой кнопкой.
+    • Cookie: светлая с градиентной линией сверху.
+    • Функциональность сохранена полностью.
+  ----------------------------------------------------------------------------
+  v3.0.0 — 28.10.2026 · Mint
+    • Светлая мятная палитра, светлый подвал.
+  ----------------------------------------------------------------------------
+  v2.0.0 — 28.10.2026 · Midnight & Gold
+    • Тёмная палитра.
+  ----------------------------------------------------------------------------
+  v1.0.2 — 28.10.2026
+    • Последняя итерация «тёплой земли».
+  ============================================================================
+-->
+</body>
+</html>
